@@ -22,8 +22,6 @@ public class StockOutController {
 
     private final IStockOutService stockOutService;
 
-    private final IStudentInfoService studentInfoService;
-
     private final IGoodsRequestService goodsRequestService;
 
     /**

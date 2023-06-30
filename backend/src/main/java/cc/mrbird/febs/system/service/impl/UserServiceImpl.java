@@ -44,8 +44,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private UserRoleService userRoleService;
     @Autowired
     private UserManager userManager;
-    @Autowired
-    private IStudentInfoService studentInfoService;
 
 
     @Override
@@ -176,11 +174,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         user.setDescription("注册用户");
         this.save(user);
 
-        StudentInfo studentInfo = new StudentInfo();
-        studentInfo.setName(name);
-        studentInfo.setUserId(user.getUserId());
-        studentInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
-        studentInfoService.save(studentInfo);
+//        StudentInfo studentInfo = new StudentInfo();
+//        studentInfo.setName(name);
+//        studentInfo.setUserId(user.getUserId());
+//        studentInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
+//        studentInfoService.save(studentInfo);
 
         UserRole ur = new UserRole();
         ur.setUserId(user.getUserId());

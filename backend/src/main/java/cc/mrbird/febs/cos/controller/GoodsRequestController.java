@@ -30,8 +30,6 @@ public class GoodsRequestController {
 
     private final IGoodsBelongService goodsBelongService;
 
-    private final IStudentInfoService studentInfoService;
-
     /**
      * 分页获取耗材申请
      * @param page
@@ -50,11 +48,11 @@ public class GoodsRequestController {
      */
     @PostMapping
     public R save(GoodsRequest goodsRequest) {
-        goodsRequest.setNum("REQ-"+new Date().getTime());
+        goodsRequest.setNum("REQ-" + System.currentTimeMillis());
         goodsRequest.setStep(0);
         goodsRequest.setCreateDate(DateUtil.formatDateTime(new Date()));
-        StudentInfo studentInfo = studentInfoService.getOne(Wrappers.<StudentInfo>lambdaQuery().eq(StudentInfo::getUserId, goodsRequest.getUserId()));
-        goodsRequest.setUserId(studentInfo.getId());
+//        StudentInfo studentInfo = studentInfoService.getOne(Wrappers.<StudentInfo>lambdaQuery().eq(StudentInfo::getUserId, goodsRequest.getUserId()));
+//        goodsRequest.setUserId(studentInfo.getId());
 
         JSONArray array = JSONUtil.parseArray(goodsRequest.getGoods());
         List<GoodsBelong> goodsBelongList = JSONUtil.toList(array, GoodsBelong.class);

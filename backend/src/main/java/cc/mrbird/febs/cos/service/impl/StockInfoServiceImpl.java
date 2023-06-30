@@ -34,8 +34,6 @@ public class StockInfoServiceImpl extends ServiceImpl<StockInfoMapper, StockInfo
 
     private final IBulletinInfoService bulletinInfoService;
 
-    private final IStudentInfoService studentInfoService;
-
     @Override
     public IPage<LinkedHashMap<String, Object>> stockInfoByPage(Page page, StockInfo stockInfo) {
         return baseMapper.stockInfoByPage(page, stockInfo);
@@ -50,7 +48,7 @@ public class StockInfoServiceImpl extends ServiceImpl<StockInfoMapper, StockInfo
         stockPut.setCustodian(custodian);
         stockPut.setPutUser(putUser);
         stockPut.setPrice(price);
-        stockPut.setNum("PUT-"+new Date().getTime());
+        stockPut.setNum("PUT-" + System.currentTimeMillis());
         stockPutService.save(stockPut);
 
         // 添加入库
@@ -123,7 +121,7 @@ public class StockInfoServiceImpl extends ServiceImpl<StockInfoMapper, StockInfo
         LinkedHashMap<String, Object> result = new LinkedHashMap<>();
         result.put("bulletinList", bulletinInfoService.list());
         if (type == 74) {
-            result.put("studentInfo", studentInfoService.getOne(Wrappers.<StudentInfo>lambdaQuery().eq(StudentInfo::getUserId, userId)));
+//            result.put("studentInfo", studentInfoService.getOne(Wrappers.<StudentInfo>lambdaQuery().eq(StudentInfo::getUserId, userId)));
         }
         result.put("stockPutRate", baseMapper.stockPutRate());
         result.put("stockPutTypeRate", baseMapper.stockPutTypeRate());
