@@ -4,7 +4,6 @@ import cc.mrbird.febs.cos.entity.GoodsBelong;
 import cc.mrbird.febs.cos.entity.StockInfo;
 import cc.mrbird.febs.cos.dao.StockInfoMapper;
 import cc.mrbird.febs.cos.entity.StockPut;
-import cc.mrbird.febs.cos.entity.StudentInfo;
 import cc.mrbird.febs.cos.service.*;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONArray;

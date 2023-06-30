@@ -44,7 +44,7 @@ public class RurchaseRequestServiceImpl extends ServiceImpl<RurchaseRequestMappe
 
     @Override
     public Boolean rurchaseRequestAdd(RurchaseRequest rurchaseRequest) {
-        rurchaseRequest.setNum("RUR-"+new Date().getTime());
+        rurchaseRequest.setNum("RUR-" + System.currentTimeMillis());
         JSONArray array = JSONUtil.parseArray(rurchaseRequest.getGoods());
         List<GoodsBelong> goodsBelongList = JSONUtil.toList(array, GoodsBelong.class);
         rurchaseRequest.setStep(0);
@@ -67,7 +67,7 @@ public class RurchaseRequestServiceImpl extends ServiceImpl<RurchaseRequestMappe
         stockPut.setCustodian(rurchaseRequest.getCustodian());
         stockPut.setPutUser(rurchaseRequest.getPutUser());
         stockPut.setPrice(rurchaseRequest.getPrice());
-        stockPut.setNum("PUT-"+new Date().getTime());
+        stockPut.setNum("PUT-" + System.currentTimeMillis());
         stockPutService.save(stockPut);
 
         goodsBelongList.forEach(item -> {
@@ -77,7 +77,7 @@ public class RurchaseRequestServiceImpl extends ServiceImpl<RurchaseRequestMappe
             StockInfo stockInfo = stockInfoService.getOne(Wrappers.<StockInfo>lambdaQuery().eq(StockInfo::getName, item.getName()).eq(StockInfo::getTypeId, item.getTypeId()).eq(StockInfo::getIsIn, 0));
             if (stockInfo != null) {
                 // 更改库房数据
-                stockInfoService.update(Wrappers.<StockInfo>lambdaUpdate().set(StockInfo::getAmount, stockInfo.getAmount()+item.getAmount())
+                stockInfoService.update(Wrappers.<StockInfo>lambdaUpdate().set(StockInfo::getAmount, stockInfo.getAmount() + item.getAmount())
                         .set(StockInfo::getPrice, stockInfo.getPrice())
                         .eq(StockInfo::getName, stockInfo.getName()));
             } else {
