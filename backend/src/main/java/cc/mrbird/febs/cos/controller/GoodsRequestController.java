@@ -32,19 +32,21 @@ public class GoodsRequestController {
 
     /**
      * 分页获取耗材申请
-     * @param page
-     * @param goodsRequest
-     * @return
+     *
+     * @param page         分页对象
+     * @param goodsRequest 耗材申请
+     * @return 结果
      */
     @GetMapping("/page")
-    public R page(Page page, GoodsRequest goodsRequest) {
+    public R page(Page<GoodsRequest> page, GoodsRequest goodsRequest) {
         return R.ok(goodsRequestService.goodsRequestByPage(page, goodsRequest));
     }
 
     /**
      * 新增耗材申请
-     * @param goodsRequest
-     * @return
+     *
+     * @param goodsRequest 耗材申请
+     * @return 结果
      */
     @PostMapping
     public R save(GoodsRequest goodsRequest) {
@@ -74,8 +76,9 @@ public class GoodsRequestController {
 
     /**
      * 修改耗材申请
-     * @param goodsRequest
-     * @return
+     *
+     * @param goodsRequest 耗材申请
+     * @return 结果
      */
     @PutMapping
     public R edit(GoodsRequest goodsRequest) {
@@ -84,8 +87,9 @@ public class GoodsRequestController {
 
     /**
      * 删除耗材申请
-     * @param ids
-     * @return
+     *
+     * @param ids IDS
+     * @return 结果
      */
     @DeleteMapping("/{ids}")
     public R deleteByIds(@PathVariable("ids") List<Integer> ids) {

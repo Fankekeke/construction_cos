@@ -2,4 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.cos.dao.SafeEducationMapper">
 
+    <!-- 分页获取安全教育信息 -->
+    <select id="selectSafeEducationPage" resultType="java.util.LinkedHashMap">
+        select
+        id,
+        title,
+        content,
+        images,
+        meet_room,
+        host_name,
+        time_order,
+        create_date,
+        del_flag
+        from
+        safe_education
+        where
+        1 = 1
+        <if test="safeEducation.title != null and safeEducation.title != ''">
+            AND title LIKE CONCAT('%',#{safeEducation.title},'%')
+        </if>
+        <if test="safeEducation.hostName != null and safeEducation.hostName != ''">
+            AND host_name LIKE CONCAT('%',#{safeEducation.hostName},'%')
+        </if>
+        <if test="safeEducation.meetRoom != null and safeEducation.meetRoom != ''">
+            AND meet_room LIKE CONCAT('%',#{safeEducation.meetRoom},'%')
+        </if>
+        order by
+        create_date desc
+    </select>
 </mapper>

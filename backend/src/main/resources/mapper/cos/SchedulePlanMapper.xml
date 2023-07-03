@@ -2,4 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.cos.dao.SchedulePlanMapper">
 
+    <!-- 分页获取进度计划信息 -->
+    <select id="selectSchedulePlanPage" resultType="java.util.LinkedHashMap">
+        select
+        sp.id,
+        sp.work_code,
+        sp.sort_no,
+        sp.stage_name,
+        sp.check_date,
+        sp.remark,
+        wi.work_name,
+        wi.status
+        from
+        schedule_plan sp
+        left join work_info wi on
+        (wi.code = sp.work_code)
+        where
+        1 = 1
+        <if test="schedulePlan.stageName != null and schedulePlan.stageName != ''">
+            AND sp.stage_name LIKE CONCAT('%',#{schedulePlan.stageName},'%')
+        </if>
+        <if test="schedulePlan.status != null and schedulePlan.status != ''">
+            AND sp.status = #{schedulePlan.status}
+        </if>
+        <if test="schedulePlan.workName != null and schedulePlan.workName != ''">
+            AND wi.work_name LIKE CONCAT('%',#{schedulePlan.workName},'%')
+        </if>
+        order by
+        sp.sort_no desc
+    </select>
 </mapper>

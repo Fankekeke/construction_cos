@@ -22,8 +22,9 @@ public class GoodsBelongController {
 
     /**
      * 根据单号获取物品信息
-     * @param num
-     * @return
+     *
+     * @param num 单号
+     * @return 结果
      */
     @GetMapping("/getGoodsByNum")
     public R getGoodsByNum(String num) {
@@ -32,8 +33,9 @@ public class GoodsBelongController {
 
     /**
      * 根据单号获取物品详细信息
-     * @param num
-     * @return
+     *
+     * @param num 单号
+     * @return 结果
      */
     @GetMapping("/getGoodsDetailByNum")
     public R getGoodsDetailByNum(String num) {

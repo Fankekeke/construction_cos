@@ -25,8 +25,9 @@ public class RurchaseRequestController {
 
     /**
      * 采购申请入库
-     * @param rurchaseRequest
-     * @return
+     *
+     * @param rurchaseRequest 采购申请
+     * @return 结果
      */
     @PostMapping("/rurchasePut")
     public R rurchasePut(RurchaseRequest rurchaseRequest) {
@@ -35,19 +36,21 @@ public class RurchaseRequestController {
 
     /**
      * 分页获取采购申请
-     * @param page
-     * @param rurchaseRequest
-     * @return
+     *
+     * @param page            分页对象
+     * @param rurchaseRequest 采购申请
+     * @return 结果
      */
     @GetMapping("/page")
-    public R page(Page page, RurchaseRequest rurchaseRequest) {
+    public R page(Page<RurchaseRequest> page, RurchaseRequest rurchaseRequest) {
         return R.ok(rurchaseRequestService.rurchaseRequestByPage(page, rurchaseRequest));
     }
 
     /**
      * 添加采购申请
-     * @param rurchaseRequest
-     * @return
+     *
+     * @param rurchaseRequest 采购申请
+     * @return 结果
      */
     @PostMapping
     public R save(RurchaseRequest rurchaseRequest) {
@@ -57,8 +60,9 @@ public class RurchaseRequestController {
 
     /**
      * 修改采购申请
-     * @param rurchaseRequest
-     * @return
+     *
+     * @param rurchaseRequest 采购申请
+     * @return 结果
      */
     @PutMapping
     public R edit(RurchaseRequest rurchaseRequest) {
@@ -67,8 +71,9 @@ public class RurchaseRequestController {
 
     /**
      * 删除采购申请
-     * @param ids
-     * @return
+     *
+     * @param ids IDS
+     * @return 结果
      */
     @DeleteMapping("/{ids}")
     public R deleteByIds(@PathVariable("ids") List<Integer> ids) {

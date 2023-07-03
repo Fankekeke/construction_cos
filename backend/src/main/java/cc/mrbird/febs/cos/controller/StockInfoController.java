@@ -30,8 +30,9 @@ public class StockInfoController {
 
     /**
      * 获取主页信息
-     * @param type
-     * @return
+     *
+     * @param type 类型
+     * @return 结果
      */
     @GetMapping("/home")
     public R home(Integer type, Integer userId) {
@@ -40,21 +41,23 @@ public class StockInfoController {
 
     /**
      * 根号用户ID获取领取耗材
-     * @param stockInfo
-     * @return
+     *
+     * @param stockInfo 库存
+     * @return 结果
      */
     @GetMapping("/getGoodsPutByUserId")
-    public R getGoodsPutByUserId(Page page, StockInfo stockInfo) {
+    public R getGoodsPutByUserId(Page<StockInfo> page, StockInfo stockInfo) {
         return R.ok(stockInfoService.getGoodsPutByUserId(page, stockInfo));
     }
 
     /**
      * 入库
+     *
      * @param goods
      * @param custodian
      * @param putUser
      * @param content
-     * @return
+     * @return 结果
      */
     @PostMapping("/put")
     public R put(String goods, String custodian, String putUser, String content, BigDecimal price) {
@@ -63,6 +66,7 @@ public class StockInfoController {
 
     /**
      * 分页获取物品出入库详情
+     *
      * @param page
      * @param stockInfo
      * @return
@@ -74,6 +78,7 @@ public class StockInfoController {
 
     /**
      * 分页获取库房信息
+     *
      * @param page
      * @param stockInfo
      * @return
@@ -85,6 +90,7 @@ public class StockInfoController {
 
     /**
      * 添加库房信息
+     *
      * @param stockInfo
      * @return
      */

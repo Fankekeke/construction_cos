@@ -2,4 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cc.mrbird.febs.cos.dao.SafetyInspectionMapper">
 
+    <!-- 分页获取安全巡检信息 -->
+    <select id="selectSafetyInspectionPage" resultType="java.util.LinkedHashMap">
+        select
+        si.id,
+        si.staff_code,
+        si.station_code,
+        si.check_type,
+        si.check_date,
+        si.images,
+        ai.name,
+        ai.sex,
+        ai.phone,
+        sti.station_name,
+        sti.station_address
+        from
+        safety_inspection si
+        left join archives_info ai on
+        (ai.code = si.staff_code)
+        left join station_info sti on
+        (sti.code = si.station_code)
+        where
+        1 = 1
+        <if test="safetyInspection.stationName != null and safetyInspection.stationName != ''">
+            AND sti.station_name LIKE CONCAT('%',#{safetyInspection.stationName},'%')
+        </if>
+        <if test="safetyInspection.staffName != null and safetyInspection.staffName != ''">
+            AND ai.name LIKE CONCAT('%',#{safetyInspection.staffName},'%')
+        </if>
+        <if test="safetyInspection.checkType != null and safetyInspection.checkType != ''">
+            AND si.check_type = #{safetyInspection.checkType}
+        </if>
+        order by
+        si.check_date desc
+    </select>
 </mapper>
