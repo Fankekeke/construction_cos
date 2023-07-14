@@ -1,6 +1,7 @@
 package cc.mrbird.febs.cos.controller;
 
 
+import cc.mrbird.febs.common.exception.FebsException;
 import cc.mrbird.febs.common.utils.R;
 import cc.mrbird.febs.cos.entity.SafetyTask;
 import cc.mrbird.febs.cos.service.ISafetyTaskService;
@@ -63,9 +64,8 @@ public class SafetyTaskController {
      * @return 结果
      */
     @PostMapping
-    public R save(SafetyTask safetyTask) {
-        safetyTask.setCreateDate(DateUtil.formatDateTime(new Date()));
-        return R.ok(safetyTaskService.save(safetyTask));
+    public R save(SafetyTask safetyTask) throws FebsException {
+        return R.ok(safetyTaskService.saveSafetyTask(safetyTask));
     }
 
     /**

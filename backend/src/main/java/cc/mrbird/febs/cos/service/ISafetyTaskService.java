@@ -1,5 +1,6 @@
 package cc.mrbird.febs.cos.service;
 
+import cc.mrbird.febs.common.exception.FebsException;
 import cc.mrbird.febs.cos.entity.SafetyTask;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -21,4 +22,12 @@ public interface ISafetyTaskService extends IService<SafetyTask> {
      * @return 结果
      */
     IPage<LinkedHashMap<String, Object>> selectSafetyTaskPage(Page<SafetyTask> page, SafetyTask safetyTask);
+
+    /**
+     * 添加巡检任务
+     *
+     * @param safetyTask 巡检任务
+     * @return 结果
+     */
+    boolean saveSafetyTask(SafetyTask safetyTask) throws FebsException;
 }
