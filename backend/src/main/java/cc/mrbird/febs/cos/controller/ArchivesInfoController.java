@@ -44,7 +44,7 @@ public class ArchivesInfoController {
      */
     @GetMapping("/list")
     public R list() {
-        return R.ok(archivesInfoService.list());
+        return R.ok(archivesInfoService.list(Wrappers.<ArchivesInfo>lambdaQuery().eq(ArchivesInfo::getDelFlag, "0")));
     }
 
     /**

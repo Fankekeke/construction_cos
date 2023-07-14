@@ -10,7 +10,7 @@
         name,
         sex,
         birthday,
-        native,
+        native_address,
         id_card,
         images,
         diploma,

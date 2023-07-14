@@ -12,7 +12,9 @@
         sp.check_date,
         sp.remark,
         wi.work_name,
-        wi.status
+        wi.status,
+        wi.principal,
+        count(sp.work_code) as stageNum
         from
         schedule_plan sp
         left join work_info wi on
@@ -28,6 +30,7 @@
         <if test="schedulePlan.workName != null and schedulePlan.workName != ''">
             AND wi.work_name LIKE CONCAT('%',#{schedulePlan.workName},'%')
         </if>
+        group by sp.work_code
         order by
         sp.sort_no desc
     </select>
