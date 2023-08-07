@@ -8,56 +8,38 @@
     <div style="font-size: 13px;font-family: SimHei" v-if="workData !== null">
       <a-row style="padding-left: 24px;padding-right: 24px;">
         <a-col style="margin-bottom: 15px"><span style="font-size: 15px;font-weight: 650;color: #000c17">基础信息</span></a-col>
-        <a-col :span="8"><b>员工编号：</b>
-          {{ workData.staffCode }}
+        <a-col :span="8"><b>项目编号：</b>
+          {{ workData.code }}
         </a-col>
-        <a-col :span="8"><b>站点编号：</b>
-          {{ workData.stationCode }}
+        <a-col :span="8"><b>项目名称：</b>
+          {{ workData.workName }}
         </a-col>
-        <a-col :span="8"><b>检查类型：</b>
-            <span v-if="workData.checkType == 1">早</span>
-            <span v-if="workData.checkType == 2">中</span>
-            <span v-if="workData.checkType == 3">晚</span>
-        </a-col>
-      </a-row>
-      <br/>
-      <a-row style="padding-left: 24px;padding-right: 24px;">
-        <a-col :span="8"><b>打卡时间：</b>
-          {{ workData.checkDate }}
-        </a-col>
-        <a-col :span="8"><b>员工姓名：</b>
-          {{ workData.name }}
-        </a-col>
-        <a-col :span="8"><b>联系方式：</b>
-          {{ workData.phone }}
+        <a-col :span="8"><b>项目状态：</b>
+            <span v-if="workData.status == 0">未开始</span>
+            <span v-if="workData.status == 1">已开始</span>
+            <span v-if="workData.status == 2">已结束</span>
+            <span v-if="workData.status == 3">已验收</span>
         </a-col>
       </a-row>
       <br/>
       <a-row style="padding-left: 24px;padding-right: 24px;">
-        <a-col :span="8"><b>站点名称：</b>
-          {{ workData.stationName }}
+        <a-col :span="8"><b>创建时间：</b>
+          {{ workData.createDate }}
         </a-col>
-        <a-col :span="16"><b>站点地址：</b>
-          {{ workData.stationAddress }}
+        <a-col :span="8"><b>负责人：</b>
+          {{ workData.principal }}
+        </a-col>
+        <a-col :span="8"><b>工作员工：</b>
+          {{ workData.workStaff }}
         </a-col>
       </a-row>
       <br/>
       <a-row style="padding-left: 24px;padding-right: 24px;">
-        <a-col style="margin-bottom: 15px"><span style="font-size: 15px;font-weight: 650;color: #000c17">打卡图片</span></a-col>
-        <span v-if="fileList.length === 0">暂无图片</span>
-        <a-upload
-          name="avatar"
-          action="http://127.0.0.1:9527/file/fileUpload/"
-          list-type="picture-card"
-          :file-list="fileList"
-          @preview="handlePreview"
-          @change="picHandleChange"
-        >
-        </a-upload>
-        <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
-          <img alt="example" style="width: 100%" :src="previewImage" />
-        </a-modal>
+        <a-col :span="24"><b>项目内容：</b>
+          {{ workData.content }}
+        </a-col>
       </a-row>
+      <br/>
     </div>
   </a-modal>
 </template>
