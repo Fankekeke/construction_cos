@@ -12,7 +12,7 @@
       <a-row :gutter="20">
         <a-col :span="12">
           <a-form-item label='选择员工' v-bind="formItemLayout">
-            <a-select allowClear disabled v-decorator="[
+            <a-select allowClear v-decorator="[
               'staffCode',
               { rules: [{ required: true, message: '请输入员工姓名!' }] }
               ]">
@@ -21,35 +21,58 @@
           </a-form-item>
         </a-col>
         <a-col :span="12">
-          <a-form-item label='选择站点' v-bind="formItemLayout">
-            <a-select allowClear disabled v-decorator="[
-              'stationCode',
-              { rules: [{ required: true, message: '请选择站点!' }] }
-              ]">
-              <a-select-option :value="item.code" v-for="(item, index) in stationList" :key="index">{{ item.stationName }}</a-select-option>
-            </a-select>
+          <a-form-item label='工作得分' v-bind="formItemLayout">
+            <a-input v-decorator="[
+            'workScore',
+            { rules: [{ required: true, message: '请输入工作得分!' }] }
+            ]"/>
           </a-form-item>
         </a-col>
-        <a-col :span="24">
-          <a-form-item label='打卡图片' v-bind="formItemLayout">
-            <a-upload
-              name="avatar"
-              action="http://127.0.0.1:9527/file/fileUpload/"
-              list-type="picture-card"
-              :file-list="fileList"
-              @preview="handlePreview"
-              @change="picHandleChange"
-            >
-              <div v-if="fileList.length < 8">
-                <a-icon type="plus" />
-                <div class="ant-upload-text">
-                  Upload
-                </div>
-              </div>
-            </a-upload>
-            <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
-              <img alt="example" style="width: 100%" :src="previewImage" />
-            </a-modal>
+        <a-col :span="12">
+          <a-form-item label='考勤得分' v-bind="formItemLayout">
+            <a-input v-decorator="[
+            'attendanceScore',
+            { rules: [{ required: true, message: '请输入考勤得分!' }] }
+            ]"/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item label='质量得分' v-bind="formItemLayout">
+            <a-input v-decorator="[
+            'qualityScore',
+            { rules: [{ required: true, message: '请输入质量得分!' }] }
+            ]"/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item label='评价年份' v-bind="formItemLayout">
+            <a-input v-decorator="[
+            'year',
+            { rules: [{ required: true, message: '请输入评价年份!' }] }
+            ]"/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item label='评价月份' v-bind="formItemLayout">
+            <a-input v-decorator="[
+            'month',
+            { rules: [{ required: true, message: '请输入评价月份!' }] }
+            ]"/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item label='评价人' v-bind="formItemLayout">
+            <a-input v-decorator="[
+            'appraiser',
+            { rules: [{ required: true, message: '请输入评价月份!' }] }
+            ]"/>
+          </a-form-item>
+        </a-col>
+        <a-col :span="12">
+          <a-form-item label='备注' v-bind="formItemLayout">
+            <a-input v-decorator="[
+            'remark'
+            ]"/>
           </a-form-item>
         </a-col>
       </a-row>
@@ -142,7 +165,7 @@ export default {
     },
     setFormValues ({...evaluate}) {
       this.rowId = evaluate.id
-      let fields = ['staffCode', 'stationCode']
+      let fields = ['staffCode', 'attendanceScore', 'workScore', 'qualityScore', 'year', 'month', 'appraiser', 'remark']
       let obj = {}
       Object.keys(evaluate).forEach((key) => {
         if (key === 'images') {

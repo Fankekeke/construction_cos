@@ -21,4 +21,13 @@ public interface IWorkEvaluationService extends IService<WorkEvaluation> {
      * @return 结果
      */
     IPage<LinkedHashMap<String, Object>> selectWorkEvaluatePage(Page<WorkEvaluation> page, WorkEvaluation workEvaluation);
+
+    /**
+     * 添加员工评价
+     *
+     * @param workEvaluation 评价信息
+     * @return 结果
+     * @throws Exception 异常
+     */
+    boolean evaluateAdd(WorkEvaluation workEvaluation) throws Exception;
 }

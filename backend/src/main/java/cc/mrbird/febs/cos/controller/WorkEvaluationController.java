@@ -63,9 +63,9 @@ public class WorkEvaluationController {
      * @return 结果
      */
     @PostMapping
-    public R save(WorkEvaluation workEvaluation) {
+    public R save(WorkEvaluation workEvaluation) throws Exception {
         workEvaluation.setCreateDate(DateUtil.formatDateTime(new Date()));
-        return R.ok(workEvaluationService.save(workEvaluation));
+        return R.ok(workEvaluationService.evaluateAdd(workEvaluation));
     }
 
     /**
