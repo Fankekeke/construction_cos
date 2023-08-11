@@ -30,4 +30,13 @@ public interface IWorkEvaluationService extends IService<WorkEvaluation> {
      * @throws Exception 异常
      */
     boolean evaluateAdd(WorkEvaluation workEvaluation) throws Exception;
+
+    /**
+     * 修改员工评价
+     *
+     * @param workEvaluation 评价信息
+     * @return 结果
+     * @throws Exception 异常
+     */
+    boolean evaluateEdit(WorkEvaluation workEvaluation) throws Exception;
 }

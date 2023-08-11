@@ -75,8 +75,8 @@ public class WorkEvaluationController {
      * @return 结果
      */
     @PutMapping
-    public R edit(WorkEvaluation workEvaluation) {
-        return R.ok(workEvaluationService.updateById(workEvaluation));
+    public R edit(WorkEvaluation workEvaluation) throws Exception {
+        return R.ok(workEvaluationService.evaluateEdit(workEvaluation));
     }
 
     /**

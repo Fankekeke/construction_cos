@@ -135,11 +135,6 @@ export default {
         this.staffList = r.data.data
       })
     },
-    getStation () {
-      this.$get('/cos/station-info/list').then((r) => {
-        this.stationList = r.data.data
-      })
-    },
     handleCancel () {
       this.previewVisible = false
     },

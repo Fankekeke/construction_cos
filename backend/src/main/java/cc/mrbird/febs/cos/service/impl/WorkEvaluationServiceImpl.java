@@ -52,4 +52,25 @@ public class WorkEvaluationServiceImpl extends ServiceImpl<WorkEvaluationMapper,
         }
         return this.save(workEvaluation);
     }
+
+    /**
+     * 修改员工评价
+     *
+     * @param workEvaluation 评价信息
+     * @return 结果
+     * @throws Exception 异常
+     */
+    @Override
+    public boolean evaluateEdit(WorkEvaluation workEvaluation) throws Exception {
+        if (StrUtil.isEmpty(workEvaluation.getStaffCode())) {
+            throw new FebsException("请选择员工");
+        }
+        // 判断是否已经评价
+        WorkEvaluation evaluation = this.getOne(Wrappers.<WorkEvaluation>lambdaQuery().eq(WorkEvaluation::getStaffCode, workEvaluation.getStaffCode())
+                .eq(WorkEvaluation::getYear, workEvaluation.getYear()).eq(WorkEvaluation::getMonth, workEvaluation.getMonth()).eq(WorkEvaluation::getDelFlag, "0"));
+        if (evaluation != null && !evaluation.getId().equals(workEvaluation.getId())) {
+            throw new FebsException("此月份已添加评价信息");
+        }
+        return this.updateById(workEvaluation);
+    }
 }
