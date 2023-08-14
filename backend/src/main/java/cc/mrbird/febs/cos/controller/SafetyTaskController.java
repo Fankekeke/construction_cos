@@ -54,7 +54,7 @@ public class SafetyTaskController {
      */
     @GetMapping("/detail/{id}")
     public R detail(@PathVariable("id") Integer id) {
-        return R.ok(safetyTaskService.getById(id));
+        return R.ok(safetyTaskService.taskDetail(id));
     }
 
     /**

@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author FanK
@@ -30,4 +31,12 @@ public interface ISafetyTaskService extends IService<SafetyTask> {
      * @return 结果
      */
     boolean saveSafetyTask(SafetyTask safetyTask) throws FebsException;
+
+    /**
+     * 巡检任务详情
+     *
+     * @param id 任务ID
+     * @return 结果
+     */
+    LinkedHashMap<String, Object> taskDetail(Integer id);
 }

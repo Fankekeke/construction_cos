@@ -1,7 +1,9 @@
 package cc.mrbird.febs.cos.service.impl;
 
 import cc.mrbird.febs.common.exception.FebsException;
+import cc.mrbird.febs.cos.dao.ArchivesInfoMapper;
 import cc.mrbird.febs.cos.dao.StationInfoMapper;
+import cc.mrbird.febs.cos.entity.ArchivesInfo;
 import cc.mrbird.febs.cos.entity.SafetyTask;
 import cc.mrbird.febs.cos.dao.SafetyTaskMapper;
 import cc.mrbird.febs.cos.entity.StationInfo;
@@ -30,6 +32,8 @@ import java.util.stream.Collectors;
 public class SafetyTaskServiceImpl extends ServiceImpl<SafetyTaskMapper, SafetyTask> implements ISafetyTaskService {
 
     private final StationInfoMapper stationInfoMapper;
+
+    private final ArchivesInfoMapper archivesInfoMapper;
 
     /**
      * 分页获取巡检任务信息
@@ -67,5 +71,28 @@ public class SafetyTaskServiceImpl extends ServiceImpl<SafetyTaskMapper, SafetyT
         List<String> stationName = stationList.stream().map(StationInfo::getStationName).collect(Collectors.toList());
         safetyTask.setStationNames(StrUtil.join(",", stationName));
         return this.save(safetyTask);
+    }
+
+    /**
+     * 巡检任务详情
+     *
+     * @param id 任务ID
+     * @return 结果
+     */
+    @Override
+    public LinkedHashMap<String, Object> taskDetail(Integer id) {
+        // 返回数据
+        LinkedHashMap<String, Object> result = new LinkedHashMap<>();
+        // 获取任务信息
+        SafetyTask task = this.getById(id);
+        result.put("task", task);
+        List<String> stationIds = Arrays.asList(StrUtil.split(task.getStationIds(), ","));
+        // 站点信息
+        List<StationInfo> stationList = stationInfoMapper.selectBatchIds(stationIds);
+        result.put("stationList", stationList);
+        // 员工信息
+        ArchivesInfo staff = archivesInfoMapper.selectOne(Wrappers.<ArchivesInfo>lambdaQuery().eq(ArchivesInfo::getCode, task.getStaffCode()));
+        result.put("staff", staff);
+        return result;
     }
 }
