@@ -106,8 +106,8 @@
 
 <script>
 import RangeDate from '@/components/datetime/RangeDate'
-import archivesAdd from './archivesAdd'
-import archivesEdit from './archivesEdit'
+import archivesAdd from './ArchivesAdd'
+import archivesEdit from './ArchivesEdit'
 import {mapState} from 'vuex'
 import moment from 'moment'
 moment.locale('zh-cn')

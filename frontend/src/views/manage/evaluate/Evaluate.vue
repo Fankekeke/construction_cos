@@ -97,9 +97,9 @@
 
 <script>
 import RangeDate from '@/components/datetime/RangeDate'
-import evaluateAdd from './evaluateAdd'
-import evaluateEdit from './evaluateEdit'
-import evaluateView from './evaluateView'
+import evaluateAdd from './EvaluateAdd'
+import evaluateEdit from './EvaluateEdit'
+import evaluateView from './EvaluateView'
 import {mapState} from 'vuex'
 import moment from 'moment'
 moment.locale('zh-cn')

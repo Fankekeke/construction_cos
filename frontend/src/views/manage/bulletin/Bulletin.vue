@@ -87,8 +87,8 @@
 
 <script>
 import RangeDate from '@/components/datetime/RangeDate'
-import BulletinAdd from './BulletinAdd'
-import BulletinEdit from './BulletinEdit'
+import BulletinAdd from './BulletinAdd.vue'
+import BulletinEdit from './BulletinEdit.vue'
 import {mapState} from 'vuex'
 import moment from 'moment'
 moment.locale('zh-cn')

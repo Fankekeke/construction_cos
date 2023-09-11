@@ -81,9 +81,9 @@
 
 <script>
 import RangeDate from '@/components/datetime/RangeDate'
-import planAdd from './planAdd'
-import planEdit from './planEdit'
-import planView from './planView'
+import planAdd from './PlanAdd'
+import planEdit from './PlanEdit'
+import planView from './PlanView'
 import {mapState} from 'vuex'
 import moment from 'moment'
 moment.locale('zh-cn')

@@ -102,9 +102,9 @@
 
 <script>
 import RangeDate from '@/components/datetime/RangeDate'
-import workAdd from './workAdd'
-import workEdit from './workEdit'
-import workView from './workView'
+import workAdd from './WorkAdd'
+import workEdit from './WorkEdit'
+import workView from './WorkView'
 import {mapState} from 'vuex'
 import moment from 'moment'
 moment.locale('zh-cn')

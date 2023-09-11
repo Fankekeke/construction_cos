@@ -95,8 +95,8 @@
 
 <script>
 import RangeDate from '@/components/datetime/RangeDate'
-import educationAdd from './educationAdd'
-import educationEdit from './educationEdit'
+import educationAdd from './EducationAdd'
+import educationEdit from './EducationEdit'
 import {mapState} from 'vuex'
 import moment from 'moment'
 moment.locale('zh-cn')
