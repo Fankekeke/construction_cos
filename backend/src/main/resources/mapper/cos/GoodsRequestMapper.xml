@@ -16,7 +16,7 @@
         si.team
         FROM
         goods_request gr
-        LEFT JOIN student_info si ON ( si.id = gr.user_id )
+        LEFT JOIN archives_info si ON ( si.id = gr.user_id )
         WHERE
         1 = 1
         <if test="goodsRequest.num != null and goodsRequest.num != ''">

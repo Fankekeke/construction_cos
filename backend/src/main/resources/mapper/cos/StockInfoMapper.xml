@@ -80,7 +80,7 @@
         ct.`name` AS consumableName
         FROM
         stock_info si
-        LEFT JOIN student_info stu ON ( stu.id = si.to_user_id )
+        LEFT JOIN archives_info stu ON ( stu.id = si.to_user_id )
         LEFT JOIN consumable_type ct ON ( ct.id = si.type_id )
         WHERE
         1 = 1

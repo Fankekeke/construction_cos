@@ -14,10 +14,10 @@
         so.create_date AS createDate,
         so.apply_id AS applyId,
         si.`name` AS userName,
-        si.team
+        si.code
         FROM
         stock_out so
-        LEFT JOIN student_info si ON ( si.id = so.user_id )
+        LEFT JOIN archives_info si ON ( si.id = so.user_id )
         WHERE
         1 = 1
         <if test="stockOut.num != null and stockOut.num != ''">
