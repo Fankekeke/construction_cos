@@ -67,6 +67,7 @@ public class ArchivesInfoController {
     @PostMapping
     public R save(ArchivesInfo archivesInfo) {
         archivesInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
+        archivesInfo.setCode("AR-" + System.currentTimeMillis());
         return R.ok(archivesInfoService.save(archivesInfo));
     }
 

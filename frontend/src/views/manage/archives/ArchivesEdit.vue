@@ -20,7 +20,7 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label='性别' v-bind="formItemLayout">
-            <a-select v-model="queryParams.sex" allowClear v-decorator="[
+            <a-select allowClear v-decorator="[
             'sex',
             { rules: [{ required: true, message: '请输入性别!' }] }
             ]">
