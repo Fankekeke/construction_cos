@@ -99,7 +99,7 @@ export default {
   },
   methods: {
     getStaff () {
-      this.$get('/cos/staff-info/list').then((r) => {
+      this.$get('/cos/archives-info/list').then((r) => {
         this.staffList = r.data.data
       })
     },

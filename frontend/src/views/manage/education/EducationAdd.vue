@@ -153,7 +153,7 @@ export default {
         if (!err) {
           values.publisher = this.currentUser.userId
           this.loading = true
-          this.$post('/cos/education-info', {
+          this.$post('/cos/safe-education', {
             ...values
           }).then((r) => {
             this.reset()

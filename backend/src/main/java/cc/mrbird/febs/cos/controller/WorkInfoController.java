@@ -65,6 +65,7 @@ public class WorkInfoController {
     @PostMapping
     public R save(WorkInfo workInfo) {
         workInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
+        workInfo.setCode("WK-" + System.currentTimeMillis());
         return R.ok(workInfoService.save(workInfo));
     }
 
