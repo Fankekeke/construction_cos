@@ -1,5 +1,5 @@
 <template>
-  <a-modal v-model="show" title="评价详情" @cancel="onClose" :width="800">
+  <a-modal v-model="show" title="评价详情" @cancel="onClose" :width="1000">
     <template slot="footer">
       <a-button key="back" @click="onClose" type="danger">
         关闭
@@ -25,21 +25,21 @@
           {{ evaluateData.staffCode }}
         </a-col>
         <a-col :span="8"><b>工作得分：</b>
-          {{ evaluateData.workScore }}
+          {{ evaluateData.workScore }} 分
         </a-col>
         <a-col :span="8"><b>考勤得分：</b>
-          {{ evaluateData.attendanceScore }}
+          {{ evaluateData.attendanceScore }} 分
         </a-col>
       </a-row>
       <br/>
       <a-row style="padding-left: 24px;padding-right: 24px;">
         <a-col :span="8"><b>质量得分：</b>
-          {{ evaluateData.qualityScore }}
+          {{ evaluateData.qualityScore }} 分
         </a-col>
-        <a-col :span="16"><b>评价年份：</b>
+        <a-col :span="8"><b>评价年份：</b>
           {{ evaluateData.year }}
         </a-col>
-        <a-col :span="16"><b>评价月份：</b>
+        <a-col :span="8"><b>评价月份：</b>
           {{ evaluateData.month }}
         </a-col>
       </a-row>
@@ -53,6 +53,11 @@
         </a-col>
         <a-col :span="8"><b>评价时间：</b>
           {{ evaluateData.createDate }}
+        </a-col>
+      </a-row>
+      <a-row v-if="loading" style="padding: 15px">
+        <a-col>
+          <apexchart type="radar" height="350" :options="chartOptions" :series="series"></apexchart>
         </a-col>
       </a-row>
     </div>
@@ -95,18 +100,42 @@ export default {
       loading: false,
       fileList: [],
       previewVisible: false,
-      previewImage: ''
+      previewImage: '',
+      series: [{
+        name: '得分',
+        data: []
+      }],
+      chartOptions: {
+        chart: {
+          height: 380,
+          type: 'radar'
+        },
+        title: {
+          text: '评价得分'
+        },
+        xaxis: {
+          categories: ['质量得分', '工作得分', '考勤得分', '综合得分']
+        }
+      }
     }
   },
   watch: {
     evaluateShow: function (value) {
       if (value) {
-        this.fileList = []
-        this.imagesInit(this.evaluateData.images)
+        this.checkEvaluate(this.evaluateData)
       }
     }
   },
   methods: {
+    checkEvaluate (score) {
+      this.loading = false
+      let data = [score.workScore, score.attendanceScore, score.qualityScore, 100]
+      this.series[0].data = data
+      this.chartOptions.title.text = score.name + '评价得分'
+      setTimeout(() => {
+        this.loading = true
+      }, 500)
+    },
     handleCancel () {
       this.previewVisible = false
     },
@@ -130,6 +159,9 @@ export default {
       }
     },
     onClose () {
+      setTimeout(() => {
+        this.loading = false
+      }, 200)
       this.$emit('close')
     }
   }

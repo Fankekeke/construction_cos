@@ -132,7 +132,7 @@ export default {
   },
   methods: {
     getStaff () {
-      this.$get('/cos/staff-info/list').then((r) => {
+      this.$get('/cos/archives-info/list').then((r) => {
         this.staffList = r.data.data
       })
     },
@@ -198,7 +198,7 @@ export default {
         values.images = images.length > 0 ? images.join(',') : null
         if (!err) {
           this.loading = true
-          this.$put('/cos/evaluate-info', {
+          this.$put('/cos/work-evaluation', {
             ...values
           }).then((r) => {
             this.reset()

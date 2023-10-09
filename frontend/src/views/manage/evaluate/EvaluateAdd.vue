@@ -131,7 +131,7 @@ export default {
   },
   methods: {
     getStaff () {
-      this.$get('/cos/staff-info/list').then((r) => {
+      this.$get('/cos/archives-info/list').then((r) => {
         this.staffList = r.data.data
       })
     },
@@ -157,17 +157,11 @@ export default {
       this.$emit('close')
     },
     handleSubmit () {
-      // 获取图片List
-      let images = []
-      this.fileList.forEach(image => {
-        images.push(image.response)
-      })
       this.form.validateFields((err, values) => {
-        values.images = images.length > 0 ? images.join(',') : null
         if (!err) {
           values.publisher = this.currentUser.userId
           this.loading = true
-          this.$post('/cos/evaluate-info', {
+          this.$post('/cos/work-evaluation', {
             ...values
           }).then((r) => {
             this.reset()

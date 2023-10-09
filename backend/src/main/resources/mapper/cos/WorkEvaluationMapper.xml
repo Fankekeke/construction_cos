@@ -18,7 +18,7 @@
         we.del_flag,
         ai.name,
         ai.sex,
-        ai.phone,
+        ai.phone
         from
         work_evaluation we
         left join archives_info ai on

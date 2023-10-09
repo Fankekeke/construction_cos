@@ -178,7 +178,7 @@ export default {
         dataIndex: 'workScore',
         customRender: (text, row, index) => {
           if (text !== null) {
-            return text
+            return text + '分'
           } else {
             return '- -'
           }
@@ -188,7 +188,7 @@ export default {
         dataIndex: 'attendanceScore',
         customRender: (text, row, index) => {
           if (text !== null) {
-            return text
+            return text + '分'
           } else {
             return '- -'
           }
@@ -198,26 +198,9 @@ export default {
         dataIndex: 'qualityScore',
         customRender: (text, row, index) => {
           if (text !== null) {
-            return text
+            return text + '分'
           } else {
             return '- -'
-          }
-        }
-      }, {
-        title: '项目状态',
-        dataIndex: 'status',
-        customRender: (text, row, index) => {
-          switch (text) {
-            case '0':
-              return <a-tag color="blue">未开始</a-tag>
-            case '1':
-              return <a-tag color="blue">已开始</a-tag>
-            case '2':
-              return <a-tag color="blue">已结束</a-tag>
-            case '3':
-              return <a-tag color="blue">已验收</a-tag>
-            default:
-              return '- -'
           }
         }
       }, {
@@ -392,7 +375,7 @@ export default {
       if (!params.sex) {
         delete params.sex
       }
-      this.$get('/cos/evaluate-info/page', {
+      this.$get('/cos/work-evaluation/page', {
         ...params
       }).then((r) => {
         let data = r.data.data
