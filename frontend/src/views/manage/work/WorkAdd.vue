@@ -125,13 +125,7 @@ export default {
       this.$emit('close')
     },
     handleSubmit () {
-      // 获取图片List
-      let images = []
-      this.fileList.forEach(image => {
-        images.push(image.response)
-      })
       this.form.validateFields((err, values) => {
-        values.images = images.length > 0 ? images.join(',') : null
         if (!err) {
           values.publisher = this.currentUser.userId
           this.loading = true

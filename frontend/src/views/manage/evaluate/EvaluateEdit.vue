@@ -128,17 +128,11 @@ export default {
   },
   mounted () {
     this.getStaff()
-    this.getStation()
   },
   methods: {
     getStaff () {
       this.$get('/cos/archives-info/list').then((r) => {
         this.staffList = r.data.data
-      })
-    },
-    getStation () {
-      this.$get('/cos/station-info/list').then((r) => {
-        this.stationList = r.data.data
       })
     },
     handleCancel () {

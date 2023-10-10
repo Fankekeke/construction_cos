@@ -127,7 +127,6 @@ export default {
   },
   mounted () {
     this.getStaff()
-    this.getStation()
   },
   methods: {
     getStaff () {

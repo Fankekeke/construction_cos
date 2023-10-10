@@ -66,6 +66,16 @@ public class StationInfo implements Serializable {
     private String createDate;
 
     /**
+     * 备注
+     */
+    private String remark;
+
+    /**
+     * 联系电话
+     */
+    private String phone;
+
+    /**
      * 删除标识
      */
     private String delFlag;

@@ -126,13 +126,9 @@ export default {
     },
     setFormValues ({...work}) {
       this.rowId = work.id
-      let fields = ['workName', 'principal', 'content']
+      let fields = ['workName', 'principal', 'content', 'staffCode']
       let obj = {}
       Object.keys(work).forEach((key) => {
-        if (key === 'images') {
-          this.fileList = []
-          this.imagesInit(work['images'])
-        }
         if (fields.indexOf(key) !== -1) {
           this.form.getFieldDecorator(key)
           obj[key] = work[key]
@@ -149,14 +145,8 @@ export default {
       this.$emit('close')
     },
     handleSubmit () {
-      // 获取图片List
-      let images = []
-      this.fileList.forEach(image => {
-        images.push(image.name)
-      })
       this.form.validateFields((err, values) => {
         values.id = this.rowId
-        values.images = images.length > 0 ? images.join(',') : null
         if (!err) {
           this.loading = true
           this.$put('/cos/work-info', {

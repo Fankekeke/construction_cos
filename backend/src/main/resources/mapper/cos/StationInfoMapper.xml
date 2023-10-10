@@ -13,6 +13,8 @@
         latitude,
         administrator,
         images,
+        remark,
+        phone,
         create_date,
         del_flag
         from

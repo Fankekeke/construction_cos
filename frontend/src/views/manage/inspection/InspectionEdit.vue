@@ -30,6 +30,18 @@
             </a-select>
           </a-form-item>
         </a-col>
+        <a-col :span="12">
+          <a-form-item label='检查类型' v-bind="formItemLayout">
+            <a-select allowClear disabled v-decorator="[
+              'checkType',
+              { rules: [{ required: true, message: '请选择检查类型!' }] }
+              ]">
+              <a-select-option value="1">早</a-select-option>
+              <a-select-option value="2">中</a-select-option>
+              <a-select-option value="3">晚</a-select-option>
+            </a-select>
+          </a-form-item>
+        </a-col>
         <a-col :span="24">
           <a-form-item label='打卡图片' v-bind="formItemLayout">
             <a-upload
@@ -142,7 +154,7 @@ export default {
     },
     setFormValues ({...inspection}) {
       this.rowId = inspection.id
-      let fields = ['staffCode', 'stationCode']
+      let fields = ['staffCode', 'stationCode', 'checkType']
       let obj = {}
       Object.keys(inspection).forEach((key) => {
         if (key === 'images') {
@@ -175,7 +187,7 @@ export default {
         values.images = images.length > 0 ? images.join(',') : null
         if (!err) {
           this.loading = true
-          this.$put('/cos/inspection-info', {
+          this.$put('/cos/safety-inspection', {
             ...values
           }).then((r) => {
             this.reset()

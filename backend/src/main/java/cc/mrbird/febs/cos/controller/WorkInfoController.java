@@ -66,6 +66,7 @@ public class WorkInfoController {
     public R save(WorkInfo workInfo) {
         workInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
         workInfo.setCode("WK-" + System.currentTimeMillis());
+        workInfo.setStatus("0");
         return R.ok(workInfoService.save(workInfo));
     }
 

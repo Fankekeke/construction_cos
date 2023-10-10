@@ -15,22 +15,18 @@
             </a-col>
             <a-col :md="6" :sm="24">
               <a-form-item
-                label="员工名称"
+                label="站点编号"
                 :labelCol="{span: 4}"
                 :wrapperCol="{span: 18, offset: 2}">
-                <a-input v-model="queryParams.staffName"/>
+                <a-input v-model="queryParams.code"/>
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="24">
               <a-form-item
-                label="检查类型"
+                label="站点地址"
                 :labelCol="{span: 4}"
                 :wrapperCol="{span: 18, offset: 2}">
-                <a-select v-model="queryParams.checkType" allowClear>
-                  <a-select-option value="1">早</a-select-option>
-                  <a-select-option value="2">中</a-select-option>
-                  <a-select-option value="3">晚</a-select-option>
-                </a-select>
+                <a-input v-model="queryParams.stationAddress"/>
               </a-form-item>
             </a-col>
           </div>
@@ -83,44 +79,44 @@
         </template>
       </a-table>
     </div>
-    <inspection-add
-      v-if="inspectionAdd.visiable"
-      @close="handleinspectionAddClose"
-      @success="handleinspectionAddSuccess"
-      :inspectionAddVisiable="inspectionAdd.visiable">
-    </inspection-add>
-    <inspection-edit
-      ref="inspectionEdit"
-      @close="handleinspectionEditClose"
-      @success="handleinspectionEditSuccess"
-      :inspectionEditVisiable="inspectionEdit.visiable">
-    </inspection-edit>
-    <inspection-view :inspectionShow="inspectionView.visiable" :inspectionData="inspectionView.data" @close="inspectionView.visiable = false"></inspection-view>
+    <station-add
+      v-if="stationAdd.visiable"
+      @close="handlestationAddClose"
+      @success="handlestationAddSuccess"
+      :stationAddVisiable="stationAdd.visiable">
+    </station-add>
+    <station-edit
+      ref="stationEdit"
+      @close="handlestationEditClose"
+      @success="handlestationEditSuccess"
+      :stationEditVisiable="stationEdit.visiable">
+    </station-edit>
+    <station-view :stationShow="stationView.visiable" :stationData="stationView.data" @close="stationView.visiable = false"></station-view>
   </a-card>
 </template>
 
 <script>
 import RangeDate from '@/components/datetime/RangeDate'
-import InspectionAdd from './InspectionAdd'
-import InspectionEdit from './InspectionEdit'
-import InspectionView from './InspectionView'
+import stationAdd from './stationAdd'
+import stationEdit from './stationEdit'
+import stationView from './stationView'
 import {mapState} from 'vuex'
 import moment from 'moment'
 moment.locale('zh-cn')
 
 export default {
-  name: 'inspection',
-  components: {InspectionAdd, InspectionEdit, InspectionView, RangeDate},
+  name: 'station',
+  components: {stationAdd, stationEdit, stationView, RangeDate},
   data () {
     return {
       advanced: false,
-      inspectionAdd: {
+      stationAdd: {
         visiable: false
       },
-      inspectionEdit: {
+      stationEdit: {
         visiable: false
       },
-      inspectionView: {
+      stationView: {
         visiable: false,
         data: null
       },
@@ -148,8 +144,8 @@ export default {
     }),
     columns () {
       return [{
-        title: '员工编号',
-        dataIndex: 'staffCode',
+        title: '站点编号',
+        dataIndex: 'code',
         customRender: (text, row, index) => {
           if (text !== null) {
             return text
@@ -168,8 +164,31 @@ export default {
           }
         }
       }, {
-        title: '员工名称',
-        dataIndex: 'name'
+        title: '站点地址',
+        dataIndex: 'stationAddress',
+        customRender: (text, row, index) => {
+          if (text !== null) {
+            return text
+          } else {
+            return '- -'
+          }
+        }
+      }, {
+        title: '经度',
+        dataIndex: 'longitude'
+      }, {
+        title: '纬度',
+        dataIndex: 'latitude'
+      }, {
+        title: '管理人',
+        dataIndex: 'administrator',
+        customRender: (text, row, index) => {
+          if (text !== null) {
+            return text
+          } else {
+            return '- -'
+          }
+        }
       }, {
         title: '联系电话',
         dataIndex: 'phone',
@@ -181,22 +200,20 @@ export default {
           }
         }
       }, {
-        title: '检查类型',
-        dataIndex: 'checkType',
+        title: '状态',
+        dataIndex: 'status',
         customRender: (text, row, index) => {
           switch (text) {
+            case '0':
+              return <a-tag color="blue">关闭</a-tag>
             case '1':
-              return <a-tag color="blue">早</a-tag>
-            case '2':
-              return <a-tag color="green">中</a-tag>
-            case '3':
-              return <a-tag color="green">晚</a-tag>
+              return <a-tag color="green">正常</a-tag>
             default:
               return '- -'
           }
         }
       }, {
-        title: '打卡图片',
+        title: '站点图片',
         dataIndex: 'images',
         customRender: (text, record, index) => {
           if (!record.images) return <a-avatar shape="square" icon="user" />
@@ -208,8 +225,8 @@ export default {
           </a-popover>
         }
       }, {
-        title: '站点地址',
-        dataIndex: 'stationAddress',
+        title: '备注',
+        dataIndex: 'remark',
         customRender: (text, row, index) => {
           if (text !== null) {
             return text
@@ -218,8 +235,8 @@ export default {
           }
         }
       }, {
-        title: '打卡时间',
-        dataIndex: 'checkDate',
+        title: '创建时间',
+        dataIndex: 'createDate',
         customRender: (text, row, index) => {
           if (text !== null) {
             return text
@@ -239,8 +256,8 @@ export default {
   },
   methods: {
     view (record) {
-      this.inspectionView.data = record
-      this.inspectionView.visiable = true
+      this.stationView.data = record
+      this.stationView.visiable = true
     },
     onSelectChange (selectedRowKeys) {
       this.selectedRowKeys = selectedRowKeys
@@ -249,26 +266,26 @@ export default {
       this.advanced = !this.advanced
     },
     add () {
-      this.inspectionAdd.visiable = true
+      this.stationAdd.visiable = true
     },
-    handleinspectionAddClose () {
-      this.inspectionAdd.visiable = false
+    handlestationAddClose () {
+      this.stationAdd.visiable = false
     },
-    handleinspectionAddSuccess () {
-      this.inspectionAdd.visiable = false
-      this.$message.success('新增巡检成功')
+    handlestationAddSuccess () {
+      this.stationAdd.visiable = false
+      this.$message.success('新增站点成功')
       this.search()
     },
     edit (record) {
-      this.$refs.inspectionEdit.setFormValues(record)
-      this.inspectionEdit.visiable = true
+      this.$refs.stationEdit.setFormValues(record)
+      this.stationEdit.visiable = true
     },
-    handleinspectionEditClose () {
-      this.inspectionEdit.visiable = false
+    handlestationEditClose () {
+      this.stationEdit.visiable = false
     },
-    handleinspectionEditSuccess () {
-      this.inspectionEdit.visiable = false
-      this.$message.success('修改巡检成功')
+    handlestationEditSuccess () {
+      this.stationEdit.visiable = false
+      this.$message.success('修改站点成功')
       this.search()
     },
     handleDeptChange (value) {
@@ -286,7 +303,7 @@ export default {
         centered: true,
         onOk () {
           let ids = that.selectedRowKeys.join(',')
-          that.$delete('/cos/safety-inspection/' + ids).then(() => {
+          that.$delete('/cos/station-info/' + ids).then(() => {
             that.$message.success('删除成功')
             that.selectedRowKeys = []
             that.search()
@@ -359,7 +376,7 @@ export default {
       if (!params.sex) {
         delete params.sex
       }
-      this.$get('/cos/safety-inspection/page', {
+      this.$get('/cos/station-info/page', {
         ...params
       }).then((r) => {
         let data = r.data.data
