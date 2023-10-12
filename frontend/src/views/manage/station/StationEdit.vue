@@ -226,7 +226,7 @@ export default {
     },
     setFormValues ({...station}) {
       this.rowId = station.id
-      let fields = ['stationAddress', 'name', 'principal', 'phone', 'delFlag', 'longitude', 'latitude']
+      let fields = ['stationAddress', 'name', 'principal', 'phone', 'delFlag', 'longitude', 'latitude', 'stationName', 'administrator', 'remark']
       let obj = {}
       Object.keys(station).forEach((key) => {
         if (key === 'images') {

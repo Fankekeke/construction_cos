@@ -32,7 +32,7 @@
         </a-col>
         <a-col :span="12">
           <a-form-item label='检查类型' v-bind="formItemLayout">
-            <a-select allowClear disabled v-decorator="[
+            <a-select allowClear v-decorator="[
               'checkType',
               { rules: [{ required: true, message: '请选择检查类型!' }] }
               ]">
@@ -120,7 +120,7 @@ export default {
   },
   methods: {
     getStaff () {
-      this.$get('/cos/staff-info/list').then((r) => {
+      this.$get('/cos/archives-info/list').then((r) => {
         this.staffList = r.data.data
       })
     },

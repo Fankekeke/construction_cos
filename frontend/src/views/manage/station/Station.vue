@@ -97,9 +97,9 @@
 
 <script>
 import RangeDate from '@/components/datetime/RangeDate'
-import stationAdd from './stationAdd'
-import stationEdit from './stationEdit'
-import stationView from './stationView'
+import stationAdd from './StationAdd'
+import stationEdit from './StationEdit'
+import stationView from './StationView'
 import {mapState} from 'vuex'
 import moment from 'moment'
 moment.locale('zh-cn')
@@ -201,7 +201,7 @@ export default {
         }
       }, {
         title: '状态',
-        dataIndex: 'status',
+        dataIndex: 'delFlag',
         customRender: (text, row, index) => {
           switch (text) {
             case '0':

@@ -65,6 +65,7 @@ public class StationInfoController {
      */
     @PostMapping
     public R save(StationInfo stationInfo) {
+        stationInfo.setCode("ST-" + System.currentTimeMillis());
         stationInfo.setCreateDate(DateUtil.formatDateTime(new Date()));
         return R.ok(stationInfoService.save(stationInfo));
     }
