@@ -19,7 +19,7 @@
         </a-col>
         <a-col :span="12" v-if="!loading">
           <div>
-            <a-row class="more-info" v-if="user.roleId != 74 && stockInfo !== null">
+            <a-row class="more-info" v-if="user.roleId != 75 && stockInfo !== null">
               <a-col :span="4"></a-col>
               <a-col :span="4"></a-col>
               <a-col :span="4"></a-col>
@@ -37,7 +37,7 @@
         </a-col>
       </a-card>
     </a-row>
-    <a-row :gutter="15" class="count-info" v-if="user.roleId == 74">
+    <a-row :gutter="15" class="count-info" v-if="user.roleId == 75">
       <a-col :span="8" class="project-wrapper" style="padding: 0">
         <a-card hoverable class="visit-count">
           <a-skeleton active v-if="loading" />
@@ -71,19 +71,19 @@
           </div>
         </a-card>
         <a-row :gutter="8" style="margin-top: 15px">
-          <a-col :span="12" v-if="user.roleId != 74">
+          <a-col :span="12" v-if="user.roleId != 75">
             <a-card hoverable class="visit-count">
               <a-skeleton active v-if="loading" />
               <apexchart v-if="!loading" type="donut" height=250 :options="chartOptions3" :series="series3"></apexchart>
             </a-card>
           </a-col>
-          <a-col :span="12" v-if="user.roleId != 74">
+          <a-col :span="12" v-if="user.roleId != 75">
             <a-card hoverable class="visit-count">
               <a-skeleton active v-if="loading" />
               <apexchart v-if="!loading" type="donut" height=250 :options="chartOptions4" :series="series4"></apexchart>
             </a-card>
           </a-col>
-          <a-col :span="24" class="visit-count-wrapper" v-show="user.roleId != 74" style="margin-top: 15px">
+          <a-col :span="24" class="visit-count-wrapper" v-show="user.roleId != 75" style="margin-top: 15px">
             <a-skeleton active v-if="loading" />
             <a-card v-show="!loading" hoverable class="visit-count">
               <apexchart ref="count" type=bar height=300 :options="chartOptions" :series="series" />
@@ -91,7 +91,7 @@
           </a-col>
         </a-row>
       </a-col>
-      <a-col :span="12" v-if="user.roleId == 74">
+      <a-col :span="12" v-if="user.roleId == 75">
         <a-card hoverable :loading="loading" title="商铺信息">
           <a-form :form="form" layout="vertical">
             <a-row :gutter="20">
@@ -123,7 +123,7 @@
           </a-form>
         </a-card>
       </a-col>
-      <a-col :span="12" class="project-wrapper" v-if="user.roleId != 74">
+      <a-col :span="12" class="project-wrapper" v-if="user.roleId != 75">
         <a-row :gutter="15">
           <a-col>
             <a-card hoverable class="visit-count">
@@ -450,7 +450,7 @@ export default {
         this.stockInfo = r.data.stockInfo
         this.studentInfo = r.data.studentInfo
         this.setFormValues(r.data.studentInfo)
-        if (this.user.roleId.toString() === '74') {
+        if (this.user.roleId.toString() === '75') {
           this.selectStatisticsByUserId(this.studentInfo.id)
         }
         this.bulletinList = r.data.bulletinList

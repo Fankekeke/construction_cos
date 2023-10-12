@@ -154,7 +154,7 @@ export default {
   },
   methods: {
     getStudentList () {
-      this.$get('/cos/student-info/list').then((r) => {
+      this.$get('/cos/archives-info/list').then((r) => {
         this.studentList = r.data.data
       })
     },
