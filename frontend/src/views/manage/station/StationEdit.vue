@@ -48,7 +48,7 @@
         <a-col :span="12">
           <a-form-item label='负责人' v-bind="formItemLayout">
             <a-input v-decorator="[
-            'principal',
+            'administrator',
             { rules: [{ required: true, message: '请输入负责人!' }] }
             ]"/>
           </a-form-item>
