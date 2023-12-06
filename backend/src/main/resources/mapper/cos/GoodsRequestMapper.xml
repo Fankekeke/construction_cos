@@ -13,10 +13,10 @@
         gr.step,
         gr.create_date AS createDate,
         si.`name`,
-        si.team
+        si.code as team
         FROM
         goods_request gr
-        LEFT JOIN archives_info si ON ( si.id = gr.user_id )
+        LEFT JOIN archives_info si ON ( si.user_id = gr.user_id )
         WHERE
         1 = 1
         <if test="goodsRequest.num != null and goodsRequest.num != ''">
@@ -25,8 +25,8 @@
         <if test="goodsRequest.name != null and goodsRequest.name != ''">
             AND si.`name` LIKE CONCAT('%',#{goodsRequest.name},'%')
         </if>
-        <if test="goodsRequest.team != null and goodsRequest.team != ''">
-            AND si.`team` LIKE CONCAT('%',#{goodsRequest.team},'%')
+        <if test="goodsRequest.code != null and goodsRequest.code != ''">
+            AND si.`code` LIKE CONCAT('%',#{goodsRequest.code},'%')
         </if>
         <if test="goodsRequest.step != null">
             AND gr.step = #{goodsRequest.step}

@@ -1,5 +1,6 @@
 package cc.mrbird.febs.cos.service.impl;
 
+import cc.mrbird.febs.cos.entity.ArchivesInfo;
 import cc.mrbird.febs.cos.entity.GoodsBelong;
 import cc.mrbird.febs.cos.entity.StockInfo;
 import cc.mrbird.febs.cos.dao.StockInfoMapper;
@@ -33,6 +34,8 @@ public class StockInfoServiceImpl extends ServiceImpl<StockInfoMapper, StockInfo
     private final IGoodsBelongService goodsBelongService;
 
     private final IBulletinInfoService bulletinInfoService;
+
+    private final IArchivesInfoService archivesInfoService;
 
     @Override
     public IPage<LinkedHashMap<String, Object>> stockInfoByPage(Page page, StockInfo stockInfo) {
@@ -120,8 +123,8 @@ public class StockInfoServiceImpl extends ServiceImpl<StockInfoMapper, StockInfo
     public LinkedHashMap<String, Object> home(Integer type, Integer userId) {
         LinkedHashMap<String, Object> result = new LinkedHashMap<>();
         result.put("bulletinList", bulletinInfoService.list());
-        if (type == 74) {
-//            result.put("studentInfo", studentInfoService.getOne(Wrappers.<StudentInfo>lambdaQuery().eq(StudentInfo::getUserId, userId)));
+        if (type == 75) {
+            result.put("studentInfo", archivesInfoService.getOne(Wrappers.<ArchivesInfo>lambdaQuery().eq(ArchivesInfo::getUserId, userId)));
         }
         result.put("stockPutRate", baseMapper.stockPutRate());
         result.put("stockPutTypeRate", baseMapper.stockPutTypeRate());

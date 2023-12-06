@@ -95,5 +95,5 @@ public class ArchivesInfo implements Serializable {
      */
     private String delFlag;
 
-
+    private String userId;
 }

@@ -149,7 +149,7 @@ export default {
         title: '出库对象',
         dataIndex: 'userName'
       }, {
-        title: '商铺小组',
+        title: '员工小组',
         dataIndex: 'team'
       }, {
         title: '总价',

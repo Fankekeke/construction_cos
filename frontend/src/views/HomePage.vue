@@ -92,14 +92,14 @@
         </a-row>
       </a-col>
       <a-col :span="12" v-if="user.roleId == 75">
-        <a-card hoverable :loading="loading" title="商铺信息">
+        <a-card hoverable :loading="loading" title="员工信息">
           <a-form :form="form" layout="vertical">
             <a-row :gutter="20">
               <a-col :span="12">
-                <a-form-item label='商铺名称' v-bind="formItemLayout">
+                <a-form-item label='员工名称' v-bind="formItemLayout">
                   <a-input v-decorator="[
                 'name',
-                { rules: [{ required: true, message: '请输入商铺名称!' }] }
+                { rules: [{ required: true, message: '请输入员工名称!' }] }
                 ]"/>
                 </a-form-item>
               </a-col>
