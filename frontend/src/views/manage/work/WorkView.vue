@@ -14,12 +14,6 @@
         <a-col :span="8"><b>项目名称：</b>
           {{ workData.workName }}
         </a-col>
-        <a-col :span="8"><b>项目状态：</b>
-            <span v-if="workData.status == 0">未开始</span>
-            <span v-if="workData.status == 1">已开始</span>
-            <span v-if="workData.status == 2">已结束</span>
-            <span v-if="workData.status == 3">已验收</span>
-        </a-col>
       </a-row>
       <br/>
       <a-row style="padding-left: 24px;padding-right: 24px;">

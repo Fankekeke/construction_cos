@@ -137,19 +137,6 @@ export default {
         dataIndex: 'amount',
         scopedSlots: {customRender: 'amountShow'}
       }, {
-        title: '物品状态',
-        dataIndex: 'isIn',
-        customRender: (text, row, index) => {
-          switch (text) {
-            case 1:
-              return <a-tag color="blue">入库</a-tag>
-            case 2:
-              return <a-tag color="pink">出库</a-tag>
-            default:
-              return '- -'
-          }
-        }
-      }, {
         title: '单价',
         dataIndex: 'price',
         customRender: (text, row, index) => {

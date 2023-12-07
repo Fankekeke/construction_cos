@@ -21,19 +21,6 @@
                 <a-input v-model="queryParams.workName"/>
               </a-form-item>
             </a-col>
-            <a-col :md="6" :sm="24">
-              <a-form-item
-                label="项目状态"
-                :labelCol="{span: 4}"
-                :wrapperCol="{span: 18, offset: 2}">
-                <a-select v-model="queryParams.status" allowClear>
-                  <a-select-option value="0">未开始</a-select-option>
-                  <a-select-option value="1">已开始</a-select-option>
-                  <a-select-option value="2">已结束</a-select-option>
-                  <a-select-option value="3">已验收</a-select-option>
-                </a-select>
-              </a-form-item>
-            </a-col>
           </div>
           <span style="float: right; margin-top: 3px;">
             <a-button type="primary" @click="search">查询</a-button>
@@ -179,23 +166,6 @@ export default {
             return text
           } else {
             return '- -'
-          }
-        }
-      }, {
-        title: '项目状态',
-        dataIndex: 'status',
-        customRender: (text, row, index) => {
-          switch (text) {
-            case '0':
-              return <a-tag color="blue">未开始</a-tag>
-            case '1':
-              return <a-tag color="blue">已开始</a-tag>
-            case '2':
-              return <a-tag color="blue">已结束</a-tag>
-            case '3':
-              return <a-tag color="blue">已验收</a-tag>
-            default:
-              return '- -'
           }
         }
       }, {

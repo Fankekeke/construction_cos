@@ -29,7 +29,7 @@
         <a-col :span="12">
           <a-form-item label='选择员工' v-bind="formItemLayout">
             <a-select allowClear v-decorator="[
-              'staffCode',
+              'workStaff',
               { rules: [{ required: true, message: '请输入员工姓名!' }] }
               ]">
               <a-select-option :value="item.code" v-for="(item, index) in staffList" :key="index">{{ item.name }}</a-select-option>

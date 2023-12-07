@@ -104,17 +104,10 @@
                 </a-form-item>
               </a-col>
               <a-col :span="12">
-                <a-form-item label='采购小组' v-bind="formItemLayout">
+                <a-form-item label='联系方式' v-bind="formItemLayout">
                   <a-input v-decorator="[
-                'team',
-                { rules: [{ required: true, message: '请输入采购小组!' }] }
-                ]"/>
-                </a-form-item>
-              </a-col>
-              <a-col :span="24">
-                <a-form-item label='备注' v-bind="formItemLayout">
-                  <a-textarea :rows="4" v-decorator="[
-                'content'
+                'phone',
+                { rules: [{ required: true, message: '请输入联系方式!' }] }
                 ]"/>
                 </a-form-item>
               </a-col>
@@ -407,7 +400,7 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           values.id = this.studentInfo.id
-          this.$put('/cos/student-info', {
+          this.$put('/cos/archives-info', {
             ...values
           }).then((r) => {
             this.$message.success('修改成功')
