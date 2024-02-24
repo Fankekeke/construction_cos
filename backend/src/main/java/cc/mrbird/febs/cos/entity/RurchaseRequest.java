@@ -60,6 +60,8 @@ public class RurchaseRequest implements Serializable {
      */
     private String createDate;
 
+    private Integer supplierId;
+
     @TableField(exist = false)
     private String goods;
     @TableField(exist = false)

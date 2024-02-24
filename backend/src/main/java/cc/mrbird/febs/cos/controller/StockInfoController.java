@@ -1,6 +1,7 @@
 package cc.mrbird.febs.cos.controller;
 
 
+import cc.mrbird.febs.common.exception.FebsException;
 import cc.mrbird.febs.common.utils.R;
 import cc.mrbird.febs.cos.entity.StockInfo;
 import cc.mrbird.febs.cos.service.IStockInfoService;
@@ -60,7 +61,7 @@ public class StockInfoController {
      * @return 结果
      */
     @PostMapping("/put")
-    public R put(String goods, String custodian, String putUser, String content, BigDecimal price) {
+    public R put(String goods, String custodian, String putUser, String content, BigDecimal price) throws FebsException {
         return R.ok(stockInfoService.stockPut(goods, custodian, putUser, content, price));
     }
 

@@ -1,11 +1,13 @@
 package cc.mrbird.febs.cos.service.impl;
 
+import cc.mrbird.febs.common.exception.FebsException;
 import cc.mrbird.febs.cos.entity.ArchivesInfo;
 import cc.mrbird.febs.cos.entity.GoodsBelong;
 import cc.mrbird.febs.cos.entity.StockInfo;
 import cc.mrbird.febs.cos.dao.StockInfoMapper;
 import cc.mrbird.febs.cos.entity.StockPut;
 import cc.mrbird.febs.cos.service.*;
+import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
@@ -16,6 +18,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -37,13 +41,16 @@ public class StockInfoServiceImpl extends ServiceImpl<StockInfoMapper, StockInfo
 
     private final IArchivesInfoService archivesInfoService;
 
+    private final StockInfoMapper stockInfoMapper;
+
     @Override
     public IPage<LinkedHashMap<String, Object>> stockInfoByPage(Page page, StockInfo stockInfo) {
         return baseMapper.stockInfoByPage(page, stockInfo);
     }
 
     @Override
-    public Boolean stockPut(String goods, String custodian, String putUser, String content, BigDecimal price) {
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean stockPut(String goods, String custodian, String putUser, String content, BigDecimal price) throws FebsException {
         // 添加入库单
         StockPut stockPut = new StockPut();
         stockPut.setContent(content);
@@ -57,6 +64,11 @@ public class StockInfoServiceImpl extends ServiceImpl<StockInfoMapper, StockInfo
         // 添加入库
         JSONArray array = JSONUtil.parseArray(goods);
         List<GoodsBelong> goodsBelongList = JSONUtil.toList(array, GoodsBelong.class);
+
+        if (this.checkStock(goodsBelongList)) {
+            throw new FebsException("库房数量不能超过1000");
+        }
+
         goodsBelongList.forEach(item -> {
             item.setCreateDate(DateUtil.formatDateTime(new Date()));
             item.setNum(stockPut.getNum());
@@ -107,6 +119,26 @@ public class StockInfoServiceImpl extends ServiceImpl<StockInfoMapper, StockInfo
             goodsBelongService.save(goodsBelong);
         });
         return true;
+    }
+
+    public boolean checkStock(List<GoodsBelong> goodsBelongList) {
+        // 库房数量
+        List<StockInfo> stockList = stockInfoMapper.selectList(Wrappers.<StockInfo>lambdaQuery().eq(StockInfo::getIsIn, 0));
+        Integer num = 0;
+        if (CollectionUtil.isNotEmpty(stockList)) {
+            for (StockInfo stockInfo : stockList) {
+                if (stockInfo.getAmount() != null) {
+                    num += stockInfo.getAmount();
+                }
+            }
+        }
+        Integer putNum = 0;
+        for (GoodsBelong goodsBelong : goodsBelongList) {
+            if (goodsBelong.getAmount() != null) {
+                putNum += goodsBelong.getAmount();
+            }
+        }
+        return (num + putNum) > 1000;
     }
 
     @Override

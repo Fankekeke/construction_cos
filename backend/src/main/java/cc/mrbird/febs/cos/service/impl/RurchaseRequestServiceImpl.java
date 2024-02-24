@@ -1,5 +1,6 @@
 package cc.mrbird.febs.cos.service.impl;
 
+import cc.mrbird.febs.common.exception.FebsException;
 import cc.mrbird.febs.cos.entity.GoodsBelong;
 import cc.mrbird.febs.cos.entity.RurchaseRequest;
 import cc.mrbird.febs.cos.dao.RurchaseRequestMapper;
@@ -19,6 +20,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -57,9 +59,14 @@ public class RurchaseRequestServiceImpl extends ServiceImpl<RurchaseRequestMappe
     }
 
     @Override
-    public Boolean rurchasePut(RurchaseRequest rurchaseRequest) {
+    @Transactional(rollbackFor = Exception.class)
+    public Boolean rurchasePut(RurchaseRequest rurchaseRequest) throws FebsException {
         JSONArray array = JSONUtil.parseArray(rurchaseRequest.getGoods());
         List<GoodsBelong> goodsBelongList = JSONUtil.toList(array, GoodsBelong.class);
+
+        if (stockInfoService.checkStock(goodsBelongList)) {
+            throw new FebsException("库房数量不能超过1000");
+        }
         // 添加入库单
         StockPut stockPut = new StockPut();
         stockPut.setContent(rurchaseRequest.getRurchaseContent());

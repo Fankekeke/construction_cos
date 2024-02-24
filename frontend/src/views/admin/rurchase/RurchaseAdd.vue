@@ -19,6 +19,16 @@
             ]"/>
           </a-form-item>
         </a-col>
+        <a-col :span="12">
+          <a-form-item label='选择供应商' v-bind="formItemLayout">
+            <a-select @change="pharmacyCheck" v-decorator="[
+            'supplierId',
+            { rules: [{ required: true, message: '请输入产品类型!' }] }
+            ]" style="width: 100%">
+              <a-select-option v-for="(item, index) in supplierList" :value="item.id" :key="index">{{ item.name }}</a-select-option>
+            </a-select>
+          </a-form-item>
+        </a-col>
         <a-col :span="24">
           <a-form-item label='备注消息' v-bind="formItemLayout">
             <a-textarea :rows="4" v-decorator="[
@@ -124,13 +134,20 @@ export default {
       form: this.$form.createForm(this),
       loading: false,
       dataList: [],
-      consumableType: []
+      consumableType: [],
+      supplierList: []
     }
   },
   mounted () {
     this.getConsumableType()
+    this.getSupplier()
   },
   methods: {
+    getSupplier () {
+      this.$get('/cos/enterprise-info/list').then((r) => {
+        this.supplierList = r.data.data
+      })
+    },
     getConsumableType () {
       this.$get('/cos/consumable-type/list').then((r) => {
         this.consumableType = r.data.data

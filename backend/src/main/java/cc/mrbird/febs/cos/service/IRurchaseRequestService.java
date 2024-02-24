@@ -1,5 +1,6 @@
 package cc.mrbird.febs.cos.service;
 
+import cc.mrbird.febs.common.exception.FebsException;
 import cc.mrbird.febs.cos.entity.RurchaseRequest;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -20,5 +21,5 @@ public interface IRurchaseRequestService extends IService<RurchaseRequest> {
     Boolean rurchaseRequestAdd(RurchaseRequest rurchaseRequest);
 
     // 采购申请入库
-    Boolean rurchasePut(RurchaseRequest rurchaseRequest);
+    Boolean rurchasePut(RurchaseRequest rurchaseRequest) throws FebsException;
 }

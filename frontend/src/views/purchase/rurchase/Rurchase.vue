@@ -138,6 +138,9 @@ export default {
         dataIndex: 'num',
         scopedSlots: {customRender: 'numShow'}
       }, {
+        title: '供应商',
+        dataIndex: 'name'
+      }, {
         title: '申请人',
         dataIndex: 'applicant'
       }, {

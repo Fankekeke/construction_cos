@@ -7,29 +7,18 @@
           <div :class="advanced ? null: 'fold'">
             <a-col :md="6" :sm="24">
               <a-form-item
-                label="采购单号"
+                label="供应商名称"
                 :labelCol="{span: 4}"
                 :wrapperCol="{span: 18, offset: 2}">
-                <a-input v-model="queryParams.num"/>
+                <a-input v-model="queryParams.name"/>
               </a-form-item>
             </a-col>
             <a-col :md="6" :sm="24">
               <a-form-item
-                label="申请人"
+                label="社会编码"
                 :labelCol="{span: 4}"
                 :wrapperCol="{span: 18, offset: 2}">
-                <a-input v-model="queryParams.applicant"/>
-              </a-form-item>
-            </a-col>
-            <a-col :md="6" :sm="24">
-              <a-form-item
-                label="采购状态"
-                :labelCol="{span: 4}"
-                :wrapperCol="{span: 18, offset: 2}">
-                <a-select v-model="queryParams.step" allowClear>
-                  <a-select-option value="0">正在采购</a-select-option>
-                  <a-select-option value="1">采购完成</a-select-option>
-                </a-select>
+                <a-input v-model="queryParams.creditCode"/>
               </a-form-item>
             </a-col>
           </div>
@@ -42,7 +31,7 @@
     </div>
     <div>
       <div class="operator">
-        <a-button type="primary" ghost @click="add">新增</a-button>
+        <a-button type="primary" ghost @click="add">添加</a-button>
         <a-button @click="batchDelete">删除</a-button>
       </div>
       <!-- 表格区域 -->
@@ -55,30 +44,43 @@
                :rowSelection="{selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
                :scroll="{ x: 900 }"
                @change="handleTableChange">
-        <template slot="numShow" slot-scope="text, record">
+        <template slot="avatarShow" slot-scope="text, record">
           <template>
-            <a-badge v-if="record.step == 0" status="processing"/>
-            <a-badge v-if="record.step == 1" status="success"/>
-            {{ record.num }}
+            <img alt="头像" :src="'static/avatar/' + text">
+          </template>
+        </template>
+        <template slot="contentShow" slot-scope="text, record">
+          <template>
+            <a-tooltip>
+              <template slot="title">
+                {{ record.content }}
+              </template>
+              {{ record.content.slice(0, 30) }} ...
+            </a-tooltip>
           </template>
         </template>
         <template slot="operation" slot-scope="text, record">
-          <a-icon type="reconciliation" @click="view(record)" title="查 看" style="margin-right: 15px"></a-icon>
-          <a-icon type="download" @click="downLoad(record)" title="下 载" style="margin-right: 15px"></a-icon>
+          <a-icon type="cloud" @click="handleEnterpriseViewOpen(record)" title="详 情"></a-icon>
+          <a-icon type="setting" theme="twoTone" twoToneColor="#4a9ff5" @click="edit(record)" title="修 改" style="margin-left: 15px"></a-icon>
         </template>
       </a-table>
     </div>
-    <rurchase-add
-      v-if="rurchaseAdd.visiable"
-      @close="handleRurchaseAddClose"
-      @success="handleRurchaseAddSuccess"
-      :rurchaseAddVisiable="rurchaseAdd.visiable">
-    </rurchase-add>
-    <rurchase-view
-      @close="handleRurchaseViewClose"
-      :rurchaseShow="rurchaseView.visiable"
-      :rurchaseData="rurchaseView.data">
-    </rurchase-view>
+    <enterprise-add
+      :enterpriseVisiable="enterpriseAdd.visiable"
+      @close="enterpriseClose"
+      @success="enterpriseSuccess">
+    </enterprise-add>
+    <enterprise-edit
+      ref="enterpriseEdit"
+      @close="handleEnterpriseEditClose"
+      @success="handleEnterpriseEditSuccess"
+      :enterpriseEditVisiable="enterpriseEdit.visiable">
+    </enterprise-edit>
+    <enterprise-view
+      @close="handleEnterpriseViewClose"
+      :enterpriseShow="enterpriseView.visiable"
+      :enterpriseData="enterpriseView.data">
+    </enterprise-view>
   </a-card>
 </template>
 
@@ -86,22 +88,27 @@
 import RangeDate from '@/components/datetime/RangeDate'
 import {mapState} from 'vuex'
 import moment from 'moment'
-import RurchaseAdd from './RurchaseAdd'
-import RurchaseView from './RurchaseView'
-import { newSpread, floatForm, floatReset, saveExcel } from '@/utils/spreadJS'
+import EnterpriseAdd from './EnterpriseAdd.vue'
+import EnterpriseEdit from './EnterpriseEdit.vue'
+import EnterpriseView from './EnterpriseView.vue'
 moment.locale('zh-cn')
+
 export default {
-  name: 'Rurchase',
-  components: {RurchaseView, RurchaseAdd, RangeDate},
+  name: 'User',
+  components: {EnterpriseAdd, EnterpriseEdit, EnterpriseView, RangeDate},
   data () {
     return {
-      rurchaseAdd: {
+      enterpriseAdd: {
         visiable: false
       },
-      rurchaseEdit: {
+      enterpriseView: {
+        visiable: false,
+        data: null
+      },
+      enterpriseEdit: {
         visiable: false
       },
-      rurchaseView: {
+      userView: {
         visiable: false,
         data: null
       },
@@ -121,10 +128,7 @@ export default {
         showSizeChanger: true,
         showTotal: (total, range) => `显示 ${range[0]} ~ ${range[1]} 条记录，共 ${total} 条记录`
       },
-      userList: [],
-      fileList: [],
-      previewVisible: false,
-      previewImage: ''
+      userList: []
     }
   },
   computed: {
@@ -133,44 +137,81 @@ export default {
     }),
     columns () {
       return [{
-        title: '采购单号',
-        dataIndex: 'num',
-        scopedSlots: {customRender: 'numShow'}
-      }, {
-        title: '供应商',
+        title: '供应商名称',
         dataIndex: 'name'
       }, {
-        title: '申请人',
-        dataIndex: 'applicant'
-      }, {
-        title: '备 注',
-        dataIndex: 'content'
-      }, {
-        title: '预计价格',
-        dataIndex: 'price',
+        title: '单位编号',
+        dataIndex: 'code',
         customRender: (text, row, index) => {
           if (text !== null) {
-            return text + ' 元'
+            return text
           } else {
             return '- -'
           }
         }
       }, {
-        title: '当前流程',
-        dataIndex: 'step',
+        title: '单位简称',
+        dataIndex: 'abbreviation',
         customRender: (text, row, index) => {
-          switch (text) {
-            case 0:
-              return <a-tag color="blue">等待采购</a-tag>
-            case 1:
-              return <a-tag color="green">入库完成</a-tag>
-            default:
-              return '- -'
+          if (text !== null) {
+            return text
+          } else {
+            return '- -'
           }
         }
       }, {
-        title: '申请时间',
-        dataIndex: 'createDate',
+        title: '统一社会信用代码',
+        dataIndex: 'creditCode',
+        customRender: (text, row, index) => {
+          if (text !== null) {
+            return text
+          } else {
+            return '- -'
+          }
+        }
+      }, {
+        title: '单位性质',
+        dataIndex: 'nature',
+        customRender: (text, row, index) => {
+          if (text !== null) {
+            return text
+          } else {
+            return '- -'
+          }
+        }
+      }, {
+        title: '经营状态',
+        dataIndex: 'status',
+        customRender: (text, row, index) => {
+          if (text !== null) {
+            return text
+          } else {
+            return '- -'
+          }
+        }
+      }, {
+        title: '法定代表人',
+        dataIndex: 'corporateRepresentative',
+        customRender: (text, row, index) => {
+          if (text !== null) {
+            return text
+          } else {
+            return '- -'
+          }
+        }
+      }, {
+        title: '注册资本（万元）',
+        dataIndex: 'registeredCapital',
+        customRender: (text, row, index) => {
+          if (text !== null) {
+            return text
+          } else {
+            return '- -'
+          }
+        }
+      }, {
+        title: '成立日期',
+        dataIndex: 'establishmentDate',
         customRender: (text, row, index) => {
           if (text !== null) {
             return text
@@ -189,49 +230,42 @@ export default {
     this.fetch()
   },
   methods: {
-    downLoad (row) {
-      this.$message.loading('正在生成', 0)
-      this.$get('/cos/goods-belong/getGoodsByNum', { num: row.num }).then((r) => {
-        let newData = []
-        r.data.data.forEach((item, index) => {
-          newData.push([(index + 1).toFixed(0), item.name, item.type !== null ? item.type : '- -', item.unit !== null ? item.unit : '- -', item.amount, item.price, ''])
-        })
-        let spread = newSpread('purchasePlan')
-        spread = floatForm(spread, 'purchasePlan', newData)
-        saveExcel(spread, '采购计划单.xlsx')
-        floatReset(spread, 'purchasePlan', newData.length)
-        this.$message.destroy()
-      })
+    handleEnterpriseViewOpen (record) {
+      this.enterpriseView.data = record
+      this.enterpriseView.visiable = true
+    },
+    handleEnterpriseViewClose () {
+      this.enterpriseView.visiable = false
+    },
+    handleEnterpriseEditClose () {
+      this.enterpriseEdit.visiable = false
+    },
+    handleEnterpriseEditSuccess () {
+      this.enterpriseEdit.visiable = false
+      this.$message.success('修改成功')
+      this.fetch()
+    },
+    enterpriseClose () {
+      this.enterpriseAdd.visiable = false
+    },
+    enterpriseSuccess () {
+      this.enterpriseAdd.visiable = false
+      this.$message.success('导入成功')
+      this.fetch()
     },
     add () {
-      this.rurchaseAdd.visiable = true
-    },
-    handleRurchaseAddClose () {
-      this.rurchaseAdd.visiable = false
-    },
-    handleRurchaseAddSuccess () {
-      this.rurchaseAdd.visiable = false
-      this.$message.success('新增采购申请成功')
-      this.search()
+      this.enterpriseAdd.visiable = true
     },
     edit (record) {
-      this.$refs.rurchaseEdit.setFormValues(record)
-      this.rurchaseEdit.visiable = true
-    },
-    handleRurchaseEditClose () {
-      this.rurchaseEdit.visiable = false
-    },
-    handleRurchaseEditSuccess () {
-      this.rurchaseEdit.visiable = false
-      this.$message.success('修改采购申请成功')
-      this.search()
+      this.$refs.enterpriseEdit.setFormValues(record)
+      this.enterpriseEdit.visiable = true
     },
     view (row) {
-      this.rurchaseView.data = row
-      this.rurchaseView.visiable = true
+      this.userView.data = row
+      this.userView.visiable = true
     },
-    handleRurchaseViewClose () {
-      this.rurchaseView.visiable = false
+    handleUserViewClose () {
+      this.userView.visiable = false
     },
     onSelectChange (selectedRowKeys) {
       this.selectedRowKeys = selectedRowKeys
@@ -254,7 +288,7 @@ export default {
         centered: true,
         onOk () {
           let ids = that.selectedRowKeys.join(',')
-          that.$delete('/cos/rurchase-request/' + ids).then(() => {
+          that.$delete('/cos/enterprise-info/' + ids).then(() => {
             that.$message.success('删除成功')
             that.selectedRowKeys = []
             that.search()
@@ -324,10 +358,10 @@ export default {
         params.size = this.pagination.defaultPageSize
         params.current = this.pagination.defaultCurrent
       }
-      if (params.step === undefined) {
-        delete params.step
+      if (params.readStatus === undefined) {
+        delete params.readStatus
       }
-      this.$get('/cos/rurchase-request/page', {
+      this.$get('/cos/enterprise-info/page', {
         ...params
       }).then((r) => {
         let data = r.data.data

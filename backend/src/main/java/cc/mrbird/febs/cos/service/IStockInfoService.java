@@ -1,5 +1,7 @@
 package cc.mrbird.febs.cos.service;
 
+import cc.mrbird.febs.common.exception.FebsException;
+import cc.mrbird.febs.cos.entity.GoodsBelong;
 import cc.mrbird.febs.cos.entity.StockInfo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -8,6 +10,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 /**
  * @author FanK
@@ -18,7 +21,7 @@ public interface IStockInfoService extends IService<StockInfo> {
     IPage<LinkedHashMap<String, Object>> stockInfoByPage(Page page, StockInfo stockInfo);
 
     // 入库
-    Boolean stockPut(String goods, String custodian, String putUser, String content, BigDecimal price);
+    Boolean stockPut(String goods, String custodian, String putUser, String content, BigDecimal price) throws FebsException;
 
     // 分页获取物品出入库详情
     IPage<LinkedHashMap<String, Object>> stockInfoDetailPage(Page page, StockInfo stockInfo);
@@ -28,4 +31,6 @@ public interface IStockInfoService extends IService<StockInfo> {
 
     // 获取主页信息
     LinkedHashMap<String, Object> home(Integer type, Integer userId);
+
+    boolean checkStock(List<GoodsBelong> goodsBelongList);
 }

@@ -1,6 +1,7 @@
 package cc.mrbird.febs.cos.controller;
 
 
+import cc.mrbird.febs.common.exception.FebsException;
 import cc.mrbird.febs.common.utils.R;
 import cc.mrbird.febs.cos.entity.RurchaseRequest;
 import cc.mrbird.febs.cos.service.IRurchaseRequestService;
@@ -30,7 +31,7 @@ public class RurchaseRequestController {
      * @return 结果
      */
     @PostMapping("/rurchasePut")
-    public R rurchasePut(RurchaseRequest rurchaseRequest) {
+    public R rurchasePut(RurchaseRequest rurchaseRequest) throws FebsException {
         return R.ok(rurchaseRequestService.rurchasePut(rurchaseRequest));
     }
 
