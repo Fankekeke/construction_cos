@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.cos.dao.StationInfoMapper">
+
+    <!-- 分页获取巡检地址信息 -->
+    <select id="selectStationPage" resultType="java.util.LinkedHashMap">
+        select
+        id,
+        code,
+        station_name,
+        station_address,
+        longitude,
+        latitude,
+        administrator,
+        images,
+        remark,
+        phone,
+        create_date,
+        del_flag
+        from
+        station_info
+        where
+        1 = 1
+        <if test="stationInfo.code != null and stationInfo.code != ''">
+            AND code LIKE CONCAT('%',#{stationInfo.code},'%')
+        </if>
+        <if test="stationInfo.stationName != null and stationInfo.stationName != ''">
+            AND station_name LIKE CONCAT('%',#{stationInfo.stationName},'%')
+        </if>
+        <if test="stationInfo.stationAddress != null and stationInfo.stationAddress != ''">
+            AND station_address LIKE CONCAT('%',#{stationInfo.stationAddress},'%')
+        </if>
+        order by
+        create_date desc
+
+    </select>
+</mapper>

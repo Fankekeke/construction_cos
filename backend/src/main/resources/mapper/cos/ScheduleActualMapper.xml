@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.cos.dao.ScheduleActualMapper">
+
+    <!-- 分页获取阶段实际完成信息 -->
+    <select id="selectScheduleActualPage" resultType="java.util.LinkedHashMap">
+        select
+        sa.id,
+        sa.work_code,
+        sa.sort_no,
+        sa.stage_name,
+        sa.check_date,
+        sa.remark,
+        sa.images,
+        sa.create_by,
+        wi.work_name,
+        wi.status
+        from
+        schedule_actual sa
+        left join work_info wi on
+        (wi.code = sa.work_code)
+        where
+        1 = 1
+        <if test="scheduleActual.stageName != null and scheduleActual.stageName != ''">
+            AND sa.stage_name LIKE CONCAT('%',#{scheduleActual.stageName},'%')
+        </if>
+        <if test="scheduleActual.workName != null and scheduleActual.workName != ''">
+            AND wi.work_name, LIKE CONCAT('%',#{scheduleActual.workName},'%')
+        </if>
+        <if test="scheduleActual.remark != null and scheduleActual.remark != ''">
+            AND sa.remark, LIKE CONCAT('%',#{scheduleActual.remark},'%')
+        </if>
+        order by
+        sa.sort_no desc
+    </select>
+</mapper>

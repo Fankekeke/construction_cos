@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.cos.dao.SafetyTaskMapper">
+
+    <!-- 分页获取巡检任务信息 -->
+    <select id="selectSafetyTaskPage" resultType="java.util.LinkedHashMap">
+        select
+        st.id,
+        st.staff_code,
+        st.station_ids,
+        st.station_names,
+        st.create_date,
+        ai.name,
+        ai.phone
+        from
+        safety_task st
+        left join archives_info ai on
+        (ai.code = st.staff_code)
+        where
+        1 = 1
+        <if test="safetyTask.staffName != null and safetyTask.staffName != ''">
+            AND ai.name LIKE CONCAT('%',#{safetyTask.staffName},'%')
+        </if>
+        <if test="safetyTask.stationNames != null and safetyTask.stationNames != ''">
+            AND st.station_names LIKE CONCAT('%',#{safetyTask.stationNames},'%')
+        </if>
+        order by
+        st.create_date desc
+    </select>
+</mapper>

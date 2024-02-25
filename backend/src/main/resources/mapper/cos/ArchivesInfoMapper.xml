@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.cos.dao.ArchivesInfoMapper">
+
+    <!-- 分页获取档案信息 -->
+    <select id="selectArchivesPage" resultType="java.util.LinkedHashMap">
+        select
+        id,
+        code,
+        name,
+        sex,
+        birthday,
+        native_address,
+        id_card,
+        images,
+        diploma,
+        school_name,
+        address,
+        mail,
+        phone,
+        create_date,
+        del_flag
+        from
+        archives_info
+        where
+        1 = 1
+        <if test="archivesInfo.code != null and archivesInfo.code != ''">
+            AND code LIKE CONCAT('%',#{archivesInfo.code},'%')
+        </if>
+        <if test="archivesInfo.name != null and archivesInfo.name != ''">
+            AND name LIKE CONCAT('%',#{archivesInfo.name},'%')
+        </if>
+        <if test="archivesInfo.idCard != null and archivesInfo.idCard != ''">
+            AND id_card LIKE CONCAT('%',#{archivesInfo.idCard},'%')
+        </if>
+        <if test="archivesInfo.sex != null and archivesInfo.sex != ''">
+            AND sex = #{archivesInfo.sex}
+        </if>
+        order by
+        create_date desc
+    </select>
+</mapper>

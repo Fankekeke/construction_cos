@@ -444,7 +444,7 @@ export default {
         this.studentInfo = r.data.studentInfo
         this.setFormValues(r.data.studentInfo)
         if (this.user.roleId.toString() === '75') {
-          this.selectStatisticsByUserId(this.studentInfo.id)
+          this.selectStatisticsByUserId(this.studentInfo.userId)
         }
         this.bulletinList = r.data.bulletinList
         let stockOutTypeRateLabel = []
