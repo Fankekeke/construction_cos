@@ -9,11 +9,7 @@ import cc.mrbird.febs.cos.service.IStockPutService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
@@ -98,6 +94,17 @@ public class StockInfoController {
     @PostMapping
     public R save(StockInfo stockInfo) {
         return R.ok();
+    }
+
+    /**
+     * 根据月份获取药品统计情况
+     *
+     * @param date 日期
+     * @return 结果
+     */
+    @GetMapping("/selectStatisticsByMonth")
+    public R selectStatisticsByMonth(@RequestParam("date") String date) throws FebsException {
+        return R.ok(stockInfoService.selectStatisticsByMonth(date));
     }
 
 

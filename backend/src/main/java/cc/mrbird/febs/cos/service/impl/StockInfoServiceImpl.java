@@ -9,6 +9,7 @@ import cc.mrbird.febs.cos.entity.StockPut;
 import cc.mrbird.febs.cos.service.*;
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -22,9 +23,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author FanK
@@ -163,6 +163,78 @@ public class StockInfoServiceImpl extends ServiceImpl<StockInfoMapper, StockInfo
         result.put("stockOutRate", baseMapper.stockOutRate());
         result.put("stockOutTypeRate", baseMapper.stockOutTypeRate());
         result.put("stockInfo", baseMapper.stockInfoByMonth());
+        return result;
+    }
+
+    /**
+     * 根据月份获取药品统计情况
+     *
+     * @param date 日期
+     * @return 结果
+     */
+    @Override
+    public LinkedHashMap<String, Object> selectStatisticsByMonth(String date) throws FebsException {
+        if (StrUtil.isEmpty(date)) {
+            throw new FebsException("参数不能为空");
+        }
+
+        int year = DateUtil.year(DateUtil.parseDate(date));
+        int month = DateUtil.month(DateUtil.parseDate(date)) + 1;
+
+        // 返回数据
+        LinkedHashMap<String, Object> result = new LinkedHashMap<String, Object>() {
+            {
+                put("num", Collections.emptyList());
+                put("price", Collections.emptyList());
+            }
+        };
+
+        // 获取订单详情
+        List<GoodsBelong> orderList = baseMapper.selectOrderByCheckMonth(year, month);
+        if (CollectionUtil.isEmpty(orderList)) {
+            return result;
+        }
+
+        List<GoodsBelong> putOrderList = new ArrayList<>();
+        List<GoodsBelong> outOrderList = new ArrayList<>();
+
+        for (GoodsBelong goodsBelong : orderList) {
+            if (goodsBelong.getNum().contains("PUT-")) {
+                putOrderList.add(goodsBelong);
+            }
+            if (goodsBelong.getNum().contains("OUT-")) {
+                outOrderList.add(goodsBelong);
+            }
+        }
+
+        Map<String, List<GoodsBelong>> putOrderMap = putOrderList.stream().collect(Collectors.groupingBy(GoodsBelong::getName));
+        Map<String, List<GoodsBelong>> outOrderMap = outOrderList.stream().collect(Collectors.groupingBy(GoodsBelong::getName));
+
+        List<Map<String, Object>> putNumMap = new ArrayList<>();
+        List<Map<String, Object>> outNumMap = new ArrayList<>();
+
+        putOrderMap.forEach((key, value) -> {
+            Map<String, Object> numItem = new HashMap<String, Object>() {
+                {
+                    put("name", key);
+                    put("value", value.stream().map(GoodsBelong::getAmount).reduce(Integer::sum));
+                }
+            };
+            putNumMap.add(numItem);
+        });
+
+        outOrderMap.forEach((key, value) -> {
+            Map<String, Object> numItem = new HashMap<String, Object>() {
+                {
+                    put("name", key);
+                    put("value", value.stream().map(GoodsBelong::getAmount).reduce(Integer::sum));
+                }
+            };
+            outNumMap.add(numItem);
+        });
+
+        result.put("putNumMap", putNumMap);
+        result.put("outNumMap", outNumMap);
         return result;
     }
 }

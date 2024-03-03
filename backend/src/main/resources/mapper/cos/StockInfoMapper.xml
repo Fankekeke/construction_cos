@@ -192,4 +192,15 @@
         ( SELECT count( 1 ) AS outCount FROM stock_info si WHERE si.is_in = 2 ) AS on2,
         ( SELECT IFNULL( SUM( si.amount * si.price ),0) AS price FROM stock_info si WHERE si.is_in = 1 ) AS on3
     </select>
+
+    <!-- 根据时间获取订单信息 -->
+    <select id="selectOrderByCheckMonth" resultType="cc.mrbird.febs.cos.entity.GoodsBelong">
+        select
+        oi.*
+        from
+            goods_belong oi
+        where
+        DATE_FORMAT( oi.create_date, '%Y' ) = #{year}
+        and DATE_FORMAT( oi.create_date, '%m' ) = #{month}
+    </select>
 </mapper>

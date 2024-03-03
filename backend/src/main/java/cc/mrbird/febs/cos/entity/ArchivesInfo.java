@@ -96,4 +96,9 @@ public class ArchivesInfo implements Serializable {
     private String delFlag;
 
     private String userId;
+
+    /**
+     * 提交材料
+     */
+    private String material;
 }

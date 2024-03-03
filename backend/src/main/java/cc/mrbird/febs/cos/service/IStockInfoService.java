@@ -33,4 +33,12 @@ public interface IStockInfoService extends IService<StockInfo> {
     LinkedHashMap<String, Object> home(Integer type, Integer userId);
 
     boolean checkStock(List<GoodsBelong> goodsBelongList);
+
+    /**
+     * 根据月份获取药品统计情况
+     *
+     * @param date 日期
+     * @return 结果
+     */
+    LinkedHashMap<String, Object> selectStatisticsByMonth(String date) throws FebsException;
 }

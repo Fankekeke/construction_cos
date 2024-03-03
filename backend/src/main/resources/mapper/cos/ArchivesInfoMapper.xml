@@ -19,7 +19,8 @@
         mail,
         phone,
         create_date,
-        del_flag
+        del_flag,
+        material
         from
         archives_info
         where

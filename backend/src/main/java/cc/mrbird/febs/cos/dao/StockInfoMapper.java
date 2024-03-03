@@ -1,5 +1,6 @@
 package cc.mrbird.febs.cos.dao;
 
+import cc.mrbird.febs.cos.entity.GoodsBelong;
 import cc.mrbird.febs.cos.entity.StockInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -37,4 +38,13 @@ public interface StockInfoMapper extends BaseMapper<StockInfo> {
 
     // 本月数据统计
     LinkedHashMap<String, Object> stockInfoByMonth();
+
+    /**
+     * 根据时间获取订单信息
+     *
+     * @param year  年度
+     * @param month 月度
+     * @return 结果
+     */
+    List<GoodsBelong> selectOrderByCheckMonth(@Param("year") Integer year, @Param("month") Integer month);
 }
