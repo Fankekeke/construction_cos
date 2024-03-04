@@ -53,6 +53,8 @@ public class GoodsRequest implements Serializable {
      * 创建时间
      */
     private String createDate;
+
+    private String images;
     @TableField(exist = false)
     private String name;
     @TableField(exist = false)

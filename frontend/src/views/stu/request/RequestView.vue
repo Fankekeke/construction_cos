@@ -38,6 +38,25 @@
       </a-row>
       <br/>
       <br/>
+      <a-row style="padding-left: 24px;padding-right: 24px;">
+        <a-col style="margin-bottom: 15px"><span style="font-size: 15px;font-weight: 650;color: #000c17">材料文件</span></a-col>
+        <a-col :span="24">
+          <a-upload
+            name="avatar"
+            action="http://127.0.0.1:9527/file/fileUpload/"
+            list-type="picture-card"
+            :file-list="fileList"
+            @preview="handlePreview"
+            @change="picHandleChange"
+          >
+          </a-upload>
+          <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
+            <img alt="example" style="width: 100%" :src="previewImage" />
+          </a-modal>
+        </a-col>
+      </a-row>
+      <br/>
+      <br/>
       <a-row style="padding-left: 24px;padding-right: 24px;" :gutter="15">
         <a-col style="margin-bottom: 15px"><span style="font-size: 15px;font-weight: 650;color: #000c17">物品详情</span></a-col>
         <a-col :span="24">
@@ -51,6 +70,14 @@
 
 <script>
 import moment from 'moment'
+function getBase64 (file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = error => reject(error)
+  })
+}
 moment.locale('zh-cn')
 export default {
   name: 'requestView',
@@ -98,7 +125,10 @@ export default {
       loading: false,
       goodsList: [],
       current: 0,
-      currentText: '审核结果'
+      currentText: '审核结果',
+      fileList: [],
+      previewVisible: false,
+      previewImage: ''
     }
   },
   watch: {
@@ -115,11 +145,36 @@ export default {
           this.current = 2
           this.currentText = '审核驳回'
         }
+        if (this.requestData.images !== null && this.requestData.images !== '') {
+          this.imagesInit(this.requestData.images)
+        }
         this.getGoodsByNum(this.requestData.num)
       }
     }
   },
   methods: {
+    imagesInit (images) {
+      if (images !== null && images !== '') {
+        let imageList = []
+        images.split(',').forEach((image, index) => {
+          imageList.push({uid: index, name: image, status: 'done', url: 'http://127.0.0.1:9527/imagesWeb/' + image})
+        })
+        this.fileList = imageList
+      }
+    },
+    handleCancel () {
+      this.previewVisible = false
+    },
+    async handlePreview (file) {
+      if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj)
+      }
+      this.previewImage = file.url || file.preview
+      this.previewVisible = true
+    },
+    picHandleChange ({ fileList }) {
+      this.fileList = fileList
+    },
     getGoodsByNum (num) {
       this.$get('/cos/goods-belong/getGoodsByNum', { num }).then((r) => {
         this.goodsList = r.data.data

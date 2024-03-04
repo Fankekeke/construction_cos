@@ -27,6 +27,28 @@
           </a-form-item>
         </a-col>
         <a-col :span="24">
+          <a-form-item label='材料文件' v-bind="formItemLayout">
+            <a-upload
+              name="avatar"
+              action="http://127.0.0.1:9527/file/fileUpload/"
+              list-type="picture-card"
+              :file-list="fileList"
+              @preview="handlePreview"
+              @change="picHandleChange"
+            >
+              <div v-if="fileList.length < 8">
+                <a-icon type="plus" />
+                <div class="ant-upload-text">
+                  Upload
+                </div>
+              </div>
+            </a-upload>
+            <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
+              <img alt="example" style="width: 100%" :src="previewImage" />
+            </a-modal>
+          </a-form-item>
+        </a-col>
+        <a-col :span="24">
           <a-table :columns="columns" :data-source="dataList">
             <template slot="nameShow" slot-scope="text, record">
               <a-input v-model="record.name"></a-input>
@@ -66,6 +88,14 @@
 
 <script>
 import {mapState} from 'vuex'
+function getBase64 (file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = error => reject(error)
+  })
+}
 const formItemLayout = {
   labelCol: { span: 24 },
   wrapperCol: { span: 24 }
@@ -125,7 +155,10 @@ export default {
       dataList: [],
       consumableType: [],
       comboList: [],
-      comboNum: ''
+      comboNum: '',
+      fileList: [],
+      previewVisible: false,
+      previewImage: ''
     }
   },
   mounted () {
@@ -133,6 +166,19 @@ export default {
     this.getComboData()
   },
   methods: {
+    handleCancel () {
+      this.previewVisible = false
+    },
+    async handlePreview (file) {
+      if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj)
+      }
+      this.previewImage = file.url || file.preview
+      this.previewVisible = true
+    },
+    picHandleChange ({ fileList }) {
+      this.fileList = fileList
+    },
     handleChange (value) {
       if (value !== '') {
         this.$get('/cos/goods-belong/getGoodsByNum', { num: value }).then((r) => {
@@ -167,11 +213,17 @@ export default {
         this.dataList.forEach(item => {
           price += item.price * item.amount
         })
+        // 获取图片List
+        let images = []
+        this.fileList.forEach(image => {
+          images.push(image.response)
+        })
         this.form.validateFields((err, values) => {
           if (!err) {
             values.price = price
             values.userId = this.currentUser.userId
             values.goods = JSON.stringify(this.dataList)
+            values.images = images.length > 0 ? images.join(',') : null
             this.loading = true
             this.$post('/cos/goods-request', {
               ...values

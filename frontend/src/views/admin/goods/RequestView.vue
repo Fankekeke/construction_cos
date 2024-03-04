@@ -1,13 +1,7 @@
 <template>
   <a-modal v-model="show" title="物品申请信息" @cancel="onClose" :width="800">
     <template slot="footer">
-      <a-button key="back" @click="audit(2)" type="danger" v-if="requestData.step !== 1">
-        驳回
-      </a-button>
-      <a-button @click="audit(1)" v-if="amount && requestData.step !== 1" >
-        出库
-      </a-button>
-      <a-button @click="onClose" v-if="requestData.step == 1" >
+      <a-button key="back" @click="onClose" type="danger">
         关闭
       </a-button>
     </template>
@@ -44,16 +38,29 @@
       </a-row>
       <br/>
       <br/>
+      <a-row style="padding-left: 24px;padding-right: 24px;">
+        <a-col style="margin-bottom: 15px"><span style="font-size: 15px;font-weight: 650;color: #000c17">材料文件</span></a-col>
+        <a-col :span="24">
+          <a-upload
+            name="avatar"
+            action="http://127.0.0.1:9527/file/fileUpload/"
+            list-type="picture-card"
+            :file-list="fileList"
+            @preview="handlePreview"
+            @change="picHandleChange"
+          >
+          </a-upload>
+          <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
+            <img alt="example" style="width: 100%" :src="previewImage" />
+          </a-modal>
+        </a-col>
+      </a-row>
+      <br/>
+      <br/>
       <a-row style="padding-left: 24px;padding-right: 24px;" :gutter="15">
         <a-col style="margin-bottom: 15px"><span style="font-size: 15px;font-weight: 650;color: #000c17">物品详情</span></a-col>
         <a-col :span="24">
           <a-table :columns="columns" :data-source="goodsList">
-            <template slot="amountStock" slot-scope="text, record">
-              <template>
-                <a-icon v-if="record.amount > record.amountStock" type="warning" style="font-size: 15px;color: red"/>
-                {{ record.amountStock }}
-              </template>
-            </template>
           </a-table>
         </a-col>
       </a-row>
@@ -63,7 +70,14 @@
 
 <script>
 import moment from 'moment'
-import {mapState} from 'vuex'
+function getBase64 (file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = error => reject(error)
+  })
+}
 moment.locale('zh-cn')
 export default {
   name: 'requestView',
@@ -77,9 +91,6 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      currentUser: state => state.account.user
-    }),
     show: {
       get: function () {
         return this.requestShow
@@ -98,10 +109,6 @@ export default {
         title: '数量',
         dataIndex: 'amount'
       }, {
-        title: '库房数量',
-        dataIndex: 'amountStock',
-        scopedSlots: {customRender: 'amountStock'}
-      }, {
         title: '所属类型',
         dataIndex: 'consumableName'
       }, {
@@ -118,8 +125,10 @@ export default {
       loading: false,
       goodsList: [],
       current: 0,
-      amount: true,
-      currentText: '审核结果'
+      currentText: '审核结果',
+      fileList: [],
+      previewVisible: false,
+      previewImage: ''
     }
   },
   watch: {
@@ -136,42 +145,40 @@ export default {
           this.current = 2
           this.currentText = '审核驳回'
         }
+        if (this.requestData.images !== null && this.requestData.images !== '') {
+          this.imagesInit(this.requestData.images)
+        }
         this.getGoodsByNum(this.requestData.num)
       }
     }
   },
   methods: {
-    audit (type) {
-      if (type === 1) {
-        // 出库
-        let price = 0
-        this.goodsList.forEach(item => {
-          price += item.price * item.amount
+    imagesInit (images) {
+      if (images !== null && images !== '') {
+        let imageList = []
+        images.split(',').forEach((image, index) => {
+          imageList.push({uid: index, name: image, status: 'done', url: 'http://127.0.0.1:9527/imagesWeb/' + image})
         })
-        let values = { userId: this.requestData.userId, custodian: '管理员', handler: '管理员', applyId: this.requestData.id }
-        values.price = price
-        values.goods = JSON.stringify(this.goodsList)
-        this.loading = true
-        this.$post('/cos/stock-out/stockOut', {
-          ...values
-        }).then((r) => {
-          this.$emit('success')
-        })
-      } else {
-        // 修改状态
-        this.$post('/cos/stock-out/audit', { id: this.requestData.id }).then((r) => {
-          this.$emit('success')
-        })
+        this.fileList = imageList
       }
     },
+    handleCancel () {
+      this.previewVisible = false
+    },
+    async handlePreview (file) {
+      if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj)
+      }
+      this.previewImage = file.url || file.preview
+      this.previewVisible = true
+    },
+    picHandleChange ({ fileList }) {
+      this.fileList = fileList
+    },
     getGoodsByNum (num) {
-      this.$get('/cos/goods-belong/getGoodsDetailByNum', { num }).then((r) => {
-        r.data.data.forEach(item => {
-          if (item.amount > item.amountStock) {
-            this.amount = false
-          }
-        })
+      this.$get('/cos/goods-belong/getGoodsByNum', { num }).then((r) => {
         this.goodsList = r.data.data
+        console.log(this.goodsList)
       })
     },
     onClose () {

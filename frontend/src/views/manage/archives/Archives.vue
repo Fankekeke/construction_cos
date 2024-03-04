@@ -232,18 +232,6 @@ export default {
           }
         }
       }, {
-        title: '材料文件',
-        dataIndex: 'material',
-        customRender: (text, record, index) => {
-          if (!record.material) return <a-avatar shape="square" icon="user" />
-          return <a-popover>
-            <template slot="content">
-              <a-avatar shape="square" size={132} icon="user" src={ 'http://127.0.0.1:9527/imagesWeb/' + record.material.split(',')[0] } />
-            </template>
-            <a-avatar shape="square" icon="user" src={ 'http://127.0.0.1:9527/imagesWeb/' + record.material.split(',')[0] } />
-          </a-popover>
-        }
-      }, {
         title: '创建时间',
         dataIndex: 'createDate',
         customRender: (text, row, index) => {

@@ -13,7 +13,7 @@
         rr.step,
         rr.applicant,
         rr.create_date AS createDate,
-        ri.name
+        ei.name
         FROM
         rurchase_request rr
         LEFT JOIN enterprise_info ei ON (ei.id = rr.supplier_id)

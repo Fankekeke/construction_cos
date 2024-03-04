@@ -111,28 +111,6 @@
                 ]"/>
                 </a-form-item>
               </a-col>
-              <a-col :span="24">
-                <a-form-item label='材料文件' v-bind="formItemLayout">
-                  <a-upload
-                    name="avatar"
-                    action="http://127.0.0.1:9527/file/fileUpload/"
-                    list-type="picture-card"
-                    :file-list="fileList"
-                    @preview="handlePreview"
-                    @change="picHandleChange"
-                  >
-                    <div v-if="fileList.length < 8">
-                      <a-icon type="plus" />
-                      <div class="ant-upload-text">
-                        Upload
-                      </div>
-                    </div>
-                  </a-upload>
-                  <a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
-                    <img alt="example" style="width: 100%" :src="previewImage" />
-                  </a-modal>
-                </a-form-item>
-              </a-col>
             </a-row>
             <a-button @click="handleSubmit" type="primary">修改</a-button>
           </a-form>

@@ -11,6 +11,7 @@
         gr.content,
         gr.process,
         gr.step,
+        gr.images,
         gr.create_date AS createDate,
         si.`name`,
         si.code as team
