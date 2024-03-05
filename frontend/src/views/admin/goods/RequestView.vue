@@ -1,7 +1,13 @@
 <template>
   <a-modal v-model="show" title="物品申请信息" @cancel="onClose" :width="800">
     <template slot="footer">
-      <a-button key="back" @click="onClose" type="danger">
+      <a-button key="back" @click="audit(2)" type="danger" v-if="requestData.step !== 1">
+        驳回
+      </a-button>
+      <a-button @click="audit(1)" v-if="amount && requestData.step !== 1" >
+        出库
+      </a-button>
+      <a-button @click="onClose" v-if="requestData.step == 1" >
         关闭
       </a-button>
     </template>
@@ -109,6 +115,10 @@ export default {
         title: '数量',
         dataIndex: 'amount'
       }, {
+        title: '库房数量',
+        dataIndex: 'amountStock',
+        scopedSlots: {customRender: 'amountStock'}
+      }, {
         title: '所属类型',
         dataIndex: 'consumableName'
       }, {
@@ -125,6 +135,7 @@ export default {
       loading: false,
       goodsList: [],
       current: 0,
+      amount: true,
       currentText: '审核结果',
       fileList: [],
       previewVisible: false,
@@ -153,6 +164,29 @@ export default {
     }
   },
   methods: {
+    audit (type) {
+      if (type === 1) {
+        // 出库
+        let price = 0
+        this.goodsList.forEach(item => {
+          price += item.price * item.amount
+        })
+        let values = { userId: this.requestData.userId, custodian: '管理员', handler: '管理员', applyId: this.requestData.id }
+        values.price = price
+        values.goods = JSON.stringify(this.goodsList)
+        this.loading = true
+        this.$post('/cos/stock-out/stockOut', {
+          ...values
+        }).then((r) => {
+          this.$emit('success')
+        })
+      } else {
+        // 修改状态
+        this.$post('/cos/stock-out/audit', { id: this.requestData.id }).then((r) => {
+          this.$emit('success')
+        })
+      }
+    },
     imagesInit (images) {
       if (images !== null && images !== '') {
         let imageList = []
@@ -176,7 +210,13 @@ export default {
       this.fileList = fileList
     },
     getGoodsByNum (num) {
-      this.$get('/cos/goods-belong/getGoodsByNum', { num }).then((r) => {
+      this.amount = true
+      this.$get('/cos/goods-belong/getGoodsDetailByNum', { num }).then((r) => {
+        r.data.data.forEach(item => {
+          if (item.amount > item.amountStock) {
+            this.amount = false
+          }
+        })
         this.goodsList = r.data.data
         console.log(this.goodsList)
       })
