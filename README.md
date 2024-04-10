@@ -60,8 +60,8 @@ caigou
 |![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952526360.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952665885.jpg) |
 |![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952516122.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952653458.jpg) |
 |![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952499591.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952623374.jpg) |
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952462356.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952612158.jpg) |
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952769086.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952601194.jpg) 
+|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952601194.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952612158.jpg) |
+|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952769086.jpg) |  
 
 
 #### 演示视频
