@@ -61,8 +61,7 @@ caigou
 |![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952516122.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952653458.jpg) |
 |![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952499591.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952623374.jpg) |
 |![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952601194.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952612158.jpg) |
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952769086.jpg) |  
-
+|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952769086.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/work/936e9baf53eb9a217af4f89c616dc19.png) |
 
 #### 演示视频
 
