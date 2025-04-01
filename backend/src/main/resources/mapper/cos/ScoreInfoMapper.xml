@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.mrbird.febs.cos.dao.ScoreInfoMapper">
+
+    <!-- 分页获取安全评分信息 -->
+    <select id="queryScorePage" resultType="java.util.LinkedHashMap">
+        select
+        si.id,
+        si.staff_code,
+        si.work_score,
+        si.appraiser,
+        si.remark,
+        si.create_date,
+        si.safe_id,
+
+        ai.name,
+        ai.sex,
+        ai.phone,
+        se.title
+        from
+        score_info si
+        left join archives_info ai on
+        (ai.code = si.staff_code)
+        left join safe_education se on
+        (se.id = si.safe_id)
+        where
+        1 = 1
+        <if test="scoreInfo.staffName != null and scoreInfo.staffName != ''">
+            AND ai.name LIKE CONCAT('%',#{scoreInfo.staffName},'%')
+        </if>
+        <if test="scoreInfo.title != null and scoreInfo.title != ''">
+            AND se.title LIKE CONCAT('%',#{scoreInfo.title},'%')
+        </if>
+        order by
+        si.create_date desc
+    </select>
+</mapper>

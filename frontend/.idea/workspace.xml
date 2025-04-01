@@ -5,86 +5,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d94e285-d1b0-4ce5-8593-dca4515a0d01" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/common/config/MyWebMvcConfigurerAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/common/config/MyWebMvcConfigurerAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/cos/controller/FileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/cos/controller/FileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/ArchivesInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/ArchivesInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/BulletinInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/BulletinInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/ConsumableTypeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/ConsumableTypeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/GoodsBelongController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/GoodsBelongController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/GoodsRequestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/GoodsRequestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/RurchaseRequestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/RurchaseRequestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/SafeEducationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/SafeEducationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/SafetyInspectionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/SafetyInspectionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/SafetyTaskController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/SafetyTaskController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/ScheduleActualController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/ScheduleActualController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/SchedulePlanController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/SchedulePlanController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/StationInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/StationInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/StockInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/StockInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/WorkEvaluationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/WorkEvaluationController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/WorkInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/controller/WorkInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/ArchivesInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/ArchivesInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/SafeEducation.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/SafeEducation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/SafetyInspection.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/SafetyInspection.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/SafetyTask.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/SafetyTask.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/ScheduleActual.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/ScheduleActual.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/SchedulePlan.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/SchedulePlan.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/StationInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/StationInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/WorkEvaluation.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/WorkEvaluation.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/WorkInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/entity/WorkInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/ArchivesInfoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/ConsumableTypeMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/SafeEducationMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/SafetyInspectionMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/SafetyTaskMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/ScheduleActualMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/SchedulePlanMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/StationInfoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/WorkEvaluationMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/WorkInfoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/xml/ArchivesInfoMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/xml/ConsumableTypeMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/xml/SafeEducationMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/xml/SafetyInspectionMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/xml/SafetyTaskMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/xml/ScheduleActualMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/xml/SchedulePlanMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/xml/StationInfoMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/xml/WorkEvaluationMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/mapper/xml/WorkInfoMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/IArchivesInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/IArchivesInfoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/ISafeEducationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/ISafeEducationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/ISafetyInspectionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/ISafetyInspectionService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/ISafetyTaskService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/ISafetyTaskService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/IScheduleActualService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/IScheduleActualService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/ISchedulePlanService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/ISchedulePlanService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/IStationInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/IStationInfoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/IWorkEvaluationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/IWorkEvaluationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/IWorkInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/IWorkInfoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/ArchivesInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/ArchivesInfoServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/SafeEducationServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/SafeEducationServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/SafetyInspectionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/SafetyInspectionServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/SafetyTaskServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/SafetyTaskServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/ScheduleActualServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/ScheduleActualServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/SchedulePlanServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/SchedulePlanServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/StationInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/StationInfoServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/WorkEvaluationServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/WorkEvaluationServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/WorkInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/target/classes/cc/mrbird/febs/cos/service/impl/WorkInfoServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/manage/score/Score.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/manage/score/ScoreAdd.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/manage/score/ScoreEdit.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/manage/weather/Weather.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/febs_shiro_jwt.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/febs_shiro_jwt.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/common/domain/FebsConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/common/domain/FebsConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/config/ScheduleConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/controller/JobController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/controller/JobLogController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/dao/JobLogMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/dao/JobMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/domain/Job.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/domain/JobLog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/service/JobLogService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/service/JobService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/service/impl/JobLogServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/service/impl/JobServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/task/TestTask.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/util/ScheduleJob.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/util/ScheduleRunnable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/java/cc/mrbird/febs/job/util/ScheduleUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/mapper/job/JobMapper.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/modules/setting.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/modules/setting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/bulletin/Bulletin.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/manage/bulletin/Bulletin.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/bulletin/BulletinAdd.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/manage/bulletin/BulletinAdd.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/admin/bulletin/BulletinEdit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/manage/bulletin/BulletinEdit.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/login/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login/Login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/login/Regist.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login/Regist.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/manage/archives/Archives.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/manage/archives/Archives.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/manage/education/Education.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/manage/education/Education.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/manage/evaluate/Evaluate.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/manage/evaluate/Evaluate.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/manage/plan/Plan.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/manage/plan/Plan.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/manage/work/Work.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/manage/work/Work.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/img/river-6968614.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/img/river-6968614.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +46,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitToolBoxStore">
-    <option name="projectConfigVersion" value="2" />
+    <option name="projectConfigVersion" value="5" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -115,7 +59,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "G:/Project/工地安全预警管理系统的设计与实现/construction_cos/frontend",
+    "last_opened_file_path": "G:/Project/工地安全预警管理系统的设计与实现/construction_cos/frontend/src/views/manage/score",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -126,11 +70,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Project\实验室耗材管理系统\frontend\src\utils" />
-      <recent name="E:\Project\实验室耗材管理系统\frontend\src\views\admin\goods" />
-      <recent name="E:\Project\实验室耗材管理系统\frontend\src\views\admin\stockout" />
-      <recent name="E:\Project\实验室耗材管理系统\frontend\src\views\admin\stock" />
-      <recent name="E:\Project\实验室耗材管理系统\frontend\src\views\admin\stockput" />
+      <recent name="G:\Project\工地安全预警管理系统的设计与实现\construction_cos\frontend\src\views\manage\score" />
+      <recent name="G:\Project\工地安全预警管理系统的设计与实现\construction_cos\frontend\src\views\manage\weather" />
+      <recent name="G:\Project\工地安全预警管理系统的设计与实现\construction_cos\frontend\src\views\admin\enterprise" />
+      <recent name="G:\Project\工地安全预警管理系统的设计与实现\construction_cos\frontend\src\views\stu" />
+      <recent name="G:\Project\工地安全预警管理系统的设计与实现\construction_cos\frontend\src\utils" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -177,10 +121,51 @@
       <workItem from="1673073102827" duration="46000" />
       <workItem from="1673102363106" duration="182000" />
       <workItem from="1694441740175" duration="2692000" />
+      <workItem from="1694526833351" duration="980000" />
+      <workItem from="1694616755580" duration="1706000" />
+      <workItem from="1694697431973" duration="148000" />
+      <workItem from="1694701907952" duration="1196000" />
+      <workItem from="1695048456863" duration="1316000" />
+      <workItem from="1695216555665" duration="3547000" />
+      <workItem from="1696594635203" duration="943000" />
+      <workItem from="1696856715192" duration="3153000" />
+      <workItem from="1697031546399" duration="21000" />
+      <workItem from="1697032604766" duration="874000" />
+      <workItem from="1697034274913" duration="2301000" />
+      <workItem from="1697118448777" duration="3974000" />
+      <workItem from="1697199871997" duration="2676000" />
+      <workItem from="1701738726338" duration="1108000" />
+      <workItem from="1701750952531" duration="50000" />
+      <workItem from="1701825248558" duration="2988000" />
+      <workItem from="1701923140722" duration="101000" />
+      <workItem from="1701947544083" duration="3081000" />
+      <workItem from="1704718807955" duration="989000" />
+      <workItem from="1708690623863" duration="364000" />
+      <workItem from="1708747912430" duration="2214000" />
+      <workItem from="1708775911626" duration="74000" />
+      <workItem from="1708776751334" duration="3523000" />
+      <workItem from="1708870938604" duration="17000" />
+      <workItem from="1709428199235" duration="4462000" />
+      <workItem from="1709534631706" duration="1255000" />
+      <workItem from="1709606201814" duration="1357000" />
+      <workItem from="1709698384159" duration="124000" />
+      <workItem from="1712758780004" duration="133000" />
+      <workItem from="1743506599927" duration="5198000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
