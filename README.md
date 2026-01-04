@@ -1,6 +1,6 @@
-<p><img align="center" src="https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/%E5%90%88%E4%BD%9C%E7%89%A9%E6%96%99%E6%A0%B7%E5%BC%8F%20(3).png" alt="fankekeke" /></p>
-
 #### 基于SpringBoot + Vue工地安全预警管理系统.
+
+工地安全物资管理系统、建筑安全用品管理平台、施工物料安全管理软件、工程防护用品管理系统、智慧工地物料管控系统
 
 #### 安装环境
 
@@ -31,7 +31,6 @@ WebStorm OR VScode 编译器 [https://www.jianshu.com/p/d63b5bae9dff]
 
 
 > 档案管理，安全教育，用工评价，安全巡检，项目工程，系统公告，库房管理，采购申请，耗材审批，入库管理，库房管理，出库管理，出入库明细，物料申请，个人信息，物料申请，领取记录，库房信息，采购管理，采购记录，耗材类型，采购申请，站点管理，采购套餐
-
 
 
 #### 前台启动方式
@@ -105,3 +104,5 @@ WeChat: `Storm_Berserker`
 `网站建设、小程序、H5、APP、各种系统 选题+开题报告+任务书+程序定制+安装调试+项目讲解+论文+答辩PPT`
 
 More info: [悲伤的橘子树](https://berserker287.github.io/)
+
+<p><img align="center" src="https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/%E5%90%88%E4%BD%9C%E7%89%A9%E6%96%99%E6%A0%B7%E5%BC%8F%20(3).png" alt="fankekeke" /></p>
