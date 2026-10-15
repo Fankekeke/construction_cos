@@ -1,8 +1,17 @@
-#### 基于SpringBoot + Vue工地安全预警管理系统.
+![](https://img.shields.io/badge/License-MIT-blue.svg)
 
-工地安全物资管理系统、建筑安全用品管理平台、、智慧工地物料管控系统
+![](https://img.shields.io/badge/Version-1.0.0-brightgreen.svg)
+
+![](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+
+# 基于 SpringBoot + Vue 的工地物料安全管理系统 (Construction Site Material Safety System)
+
+物料全流程管控 · 安全巡检闭环 · 气象预警 · 安全评分 · 多站点协同
+
+本项目是一套面向建筑工程领域的工地物料与安全综合管理系统，采用前后端分离架构，覆盖系统管理员、采购监管、普通员工三类角色。系统围绕"物料采购审批、出入库管理、安全巡检、安全教育、气象预警、安全评分、用工评价、进度计划"等核心业务设计，支持员工在线提交物料申请、管理员审批后完成出入库，安全员执行巡检任务并闭环整改，同时集成气象预警与安全评分机制，适用于房建、市政、路桥等各类施工项目的物料与安全管理场景。
 
 #### 安装环境
+️**注意**：请确保您的开发环境已安装以下依赖。
 
 JAVA 环境 
 
@@ -10,27 +19,142 @@ Node.js环境 [https://nodejs.org/en/] 选择14.17
 
 Yarn 打开cmd， 输入npm install -g yarn !!!必须安装完毕nodejs
 
-Mysql 数据库 [https://blog.csdn.net/qq_40303031/article/details/88935262] 一定要把账户和密码记住
+Mysql 数据库 一定要把账户和密码记住
 
 redis
 
-Idea 编译器 [https://blog.csdn.net/weixin_44505194/article/details/104452880]
+Idea 编译器
 
-WebStorm OR VScode 编译器 [https://www.jianshu.com/p/d63b5bae9dff]
+WebStorm OR VScode 编译器
 
 #### 采用技术及功能
 
 后端：SpringBoot、MybatisPlus、MySQL、Redis、
 前端：Vue、Apex、Antd、Axios
 
-平台前端：vue(框架) + vuex(全局缓存) + rue-router(路由) + axios(请求插件) + apex(图表)  + antd-ui(ui组件)
+平台前端：vue(框架) + vuex(全局缓存) + rue-router(路由) + axios(请求插件) + apex(图表)  + antd-ui(ui组件) + 百度地图 API
 
 平台后台：springboot(框架) + redis(缓存中间件) + shiro(权限中间件) + mybatisplus(orm) + restful风格接口 + mysql(数据库)
 
 开发环境：windows10 or windows7 ， vscode or webstorm ， idea + lambok
 
+---
 
-> 档案管理，安全教育，用工评价，安全巡检，项目工程，系统公告，库房管理，采购申请，耗材审批，入库管理，库房管理，出库管理，出入库明细，物料申请，个人信息，物料申请，领取记录，库房信息，采购管理，采购记录，耗材类型，采购申请，站点管理，采购套餐
+## 核心特性
+
+- **物料全流程管控**：覆盖采购申请、耗材审批、采购下单、入库验收、领料出库、退库盘点全生命周期，每笔操作全程留痕可追溯。
+- **安全巡检闭环**：制定巡检标准与任务路线，巡检人员拍照上报隐患，系统派单整改并跟踪闭环，形成安全管理完整链条。
+- **安全教育与用工评价**：记录安全教育培训情况，支持在线学习与考核；对施工班组与劳务人员进行用工评价，沉淀信用数据。
+- **气象预警**：接入气象数据，对暴雨、大风、高温、雷电等极端天气实时预警，联动暂停高危作业，保障施工安全。
+- **安全评分体系**：基于巡检记录、隐患整改率、安全事故、教育培训等多维度自动计算项目安全评分，直观呈现安全管理水平。
+- **多站点管理**：支持多个工地/站点独立管理，各站点可配置专属管理员与安全员，物料与安全数据按站点隔离与统计。
+- **采购监管**：采购监管角色可独立查看库房信息、采购记录与采购申请，实现采购流程透明化与多方监督。
+- **进度计划管理**：关联施工进度计划与物料需求，根据进度自动推算物料需求量，避免供应不足或积压浪费。
+- **供应商管理**：维护供应商资质、供应品类、合作记录与履约评价，采购时快速选择优质供应商。
+- **库房统计**：实时统计各站点各库房库存总量、出入库流水、物料消耗、库存预警等核心指标，支持导出报表。
+- **系统公告**：发布工地通知、安全提示、制度更新与气象预警信息，全员可查看。
+---
+
+## 适用场景
+
+- 房建工程项目物料与安全管理
+- 市政工程项目物资管控
+- 路桥隧道施工物料管理
+- 水利水电工程物料管理
+- 装饰装修工程耗材管理
+- 施工企业安全巡检与隐患排查治理
+---
+
+## 功能模块概览
+
+### 系统管理员端
+
+系统管理员端负责平台整体运营、多站点管理、物料采购审批、安全巡检监管与数据统计：
+
+**平台基础管理**
+
+- **用户管理**：管理注册用户账号、部门归属、岗位信息与账户状态。
+- **角色管理**：配置系统角色（管理员、采购监管、安全员、员工），分配菜单权限与操作权限。
+- **系统公告**：发布工地通知、安全提示、制度更新与系统维护信息。
+
+**站点与档案管理**
+
+- **站点管理**：管理多个工地/站点，包括站点名称、位置、负责人、联系电话与状态。
+- **档案管理**：管理项目工程档案，包括项目基本信息、施工许可证、设计图纸、合同文件等资料归档。
+- **项目工程**：管理在建工程项目，关联站点、进度计划、预算信息与参与人员。
+
+**物料与库房管理**
+
+- **耗材类型**：管理物料多级分类体系（如建筑材料→钢材→螺纹钢），支持分类排序与编码规则。
+- **计量单位**：管理物料计量单位（吨、千克、米、根、箱等），支持单位换算配置。
+- **库房管理**：管理各站点库房列表，包括库房名称、位置、容量、负责人与状态。
+- **入库管理**：管理入库单据，支持采购入库、退料入库、调拨入库等类型，审核入库记录。
+- **出库管理**：管理出库单据，支持领料出库、调拨出库、报损出库等类型，审核出库记录。
+- **出入库明细**：查询全平台出入库记录，支持按时间、站点、库房、物料、操作人等多维度筛选与导出。
+- **库房统计**：实时统计各库房库存总量、出入库流水、物料消耗、库存预警等数据，支持导出报表。
+
+**采购与供应商管理**
+
+- **采购申请**：审核员工/站点提交的采购申请，批准或驳回，审批通过后生成采购单。
+- **耗材审批**：审核员工提交的物料领用申请，批准后生成出库单。
+- **物资采购**：创建采购单，选择供应商与采购物料，提交采购审批。
+- **采购组合**：管理常用采购组合/套餐，快速生成采购单，提升采购效率。
+- **供应商管理**：维护供应商信息，包括供应商名称、联系人、电话、地址、供应品类、资质文件与合作评级。
+
+**安全管理**
+
+- **安全教育**：发布安全教育培训内容，记录员工学习与考核情况，支持在线学习与考试。
+- **安全巡检**：制定安全巡检标准与路线，查看巡检任务执行记录与隐患整改情况。
+- **巡检任务**：创建与分配巡检任务，指定巡检人员、巡检区域与完成时限。
+- **用工评价**：对施工班组与劳务人员进行用工评价，记录履约表现与安全评分。
+- **安全评分**：基于巡检记录、隐患整改率、安全事故、教育培训等多维度自动计算项目安全评分。
+- **气象预警**：接入气象数据，对暴雨、大风、高温、雷电等极端天气实时预警，推送至相关站点负责人。
+
+**进度与统计**
+
+- **进度计划**：管理项目施工进度计划，关联物料需求推算，监控进度执行情况。
+- **数据大屏**：实时展示库存总量、出入库趋势、安全评分、气象预警、采购统计等可视化图表。
+
+### 采购监管端
+
+采购监管端面向采购监督人员，负责采购流程透明化监管：
+
+- **库房信息**：查看各站点库房基本信息与库存状态。
+- **采购记录**：查看全平台采购单记录，包括采购物品、数量、金额、供应商与执行状态。
+- **采购申请**：查看采购申请列表与审批状态，监督采购流程合规性。
+
+### 员工端
+
+员工端面向施工现场普通员工，通过微信小程序/H5/APP 提供物料申请、领取记录查询等功能：
+
+- **个人信息**：维护姓名、部门、岗位、联系电话与登录密码。
+- **物料申请**：在线提交物料领用申请，选择物料、填写申请数量与用途说明，提交后等待审批。
+- **领取记录**：查看本人物料领取记录，包括领取时间、物料名称、数量与关联出库单。
+
+---
+
+## 项目结构
+
+```text
+pharmacy-dispensing-system/
+├── backend/            # 后端 API 服务
+│   ├── src/
+│   │   ├── controllers/  # 控制器
+│   │   ├── models/       # 数据模型
+│   │   ├── routes/       # 路由
+│   │   └── services/     # 业务逻辑
+│   └── package.json
+├── frontend/           # 前端 Web 应用
+│   ├── src/
+│   │   ├── views/      # 页面视图
+│   │   ├── components/ # 公共组件
+│   │   └── store/      # 状态管理
+│   └── package.json
+├── docs/               # 项目文档与 API 接口说明
+├── LICENSE
+└── README.md
+```
+---
 
 
 #### 前台启动方式
@@ -40,29 +164,24 @@ WebStorm OR VScode 编译器 [https://www.jianshu.com/p/d63b5bae9dff]
 #### 默认后台账户密码
 [管理员]
 admin
-1234qwer
+123456
 
-[用户]
+[员工]
 fank
-1234qwer
-
-[采购员]
-caigou
-1234qwer
-
+123456
 
 #### 项目截图
-
 |  |  |
 |---------------------|---------------------|
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952583051.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952757273.jpg) |
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952554573.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952734602.jpg) |
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952537741.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952675393.jpg) |
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952526360.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952665885.jpg) |
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952516122.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952653458.jpg) |
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952499591.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952623374.jpg) |
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952601194.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952612158.jpg) |
-|![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/1701952769086.jpg) | ![](https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/work/936e9baf53eb9a217af4f89c616dc19.png) |
+| ![](./assets/image%20(1).jpg) | ![](./assets/image%20(2).jpg) |
+| ![](./assets/image%20(3).jpg) | ![](./assets/image%20(4).jpg) |
+| ![](./assets/image%20(5).jpg) | ![](./assets/image%20(6).jpg) |
+| ![](./assets/image%20(7).jpg) | ![](./assets/image%20(8).jpg) |
+| ![](./assets/image%20(9).jpg) | ![](./assets/image%20(10).jpg) |
+| ![](./assets/image%20(11).jpg) | ![](./assets/image%20(12).jpg) |
+| ![](./assets/image%20(13).jpg) | ![](./assets/image%20(14).jpg) |
+| ![](./assets/image%20(15).jpg) | ![](./assets/image%20(16).jpg) |
+
 
 #### 演示视频
 
@@ -80,7 +199,10 @@ WeChat: `Storm_Berserker`
 
 > 项目部署调试不好包退！功能逻辑没讲明白包退！
 
+<div align=center><img align="center" src="./assets/product_word.png" alt="fankekeke" /></div>
+
 #### 其它资源
+[2026年-答辩顺利通过-客户评价🀄](https://berserker287.github.io/2026/06/29/2026%E5%B9%B4%E7%AD%94%E8%BE%A9%E9%A1%BA%E5%88%A9%E9%80%9A%E8%BF%87/)
 
 [2025年-答辩顺利通过-客户评价🍜](https://berserker287.github.io/2025/06/18/2025%E5%B9%B4%E7%AD%94%E8%BE%A9%E9%A1%BA%E5%88%A9%E9%80%9A%E8%BF%87/)
 
@@ -98,11 +220,14 @@ WeChat: `Storm_Berserker`
 
 [计算机专业毕业答辩小tips](https://zhuanlan.zhihu.com/p/145911029)
 
-
 #### 接JAVAWEB毕设，纯原创，价格公道，诚信第一
 
 `网站建设、小程序、H5、APP、各种系统 选题+开题报告+任务书+程序定制+安装调试+项目讲解+论文+答辩PPT`
 
 More info: [悲伤的橘子树](https://berserker287.github.io/)
 
-<p><img align="center" src="https://fank-bucket-oss.oss-cn-beijing.aliyuncs.com/img/%E5%90%88%E4%BD%9C%E7%89%A9%E6%96%99%E6%A0%B7%E5%BC%8F%20(3).png" alt="fankekeke" /></p>
+<div align="center"><img align="center" src="./assets/chat_qr_code.png" alt="fankekeke" width=250 /></div>
+
+<p><img align="center" src="./assets/wechat_group.png" alt="fankekeke" /></p>
+
+**感谢查看**
